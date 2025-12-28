@@ -1,0 +1,223 @@
+[0;34m========================================[0m
+[0;34m  CORTEX DIAGNOSTIC SCRIPT[0m
+[0;34m========================================[0m
+
+[0;32m[1] Checking Container Status...[0m
+time="2025-11-20T15:57:19Z" level=warning msg="/home/smail/mini-soc/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
+NAME      IMAGE                           COMMAND                  SERVICE   CREATED          STATUS                    PORTS
+cortex    thehiveproject/cortex:3.1.1-1   "/opt/cortex/entrypo…"   cortex    19 minutes ago   Up 12 minutes (healthy)   0.0.0.0:9001->9001/tcp, :::9001->9001/tcp
+
+[0;32m[2] Docker Image Information...[0m
+        "Image": "sha256:88918f5fd6c0468a1cbb5a6b0201cc5c90b7ca1cda9d7cccaabe4572d6467b2e",
+        "ResolvConfPath": "/var/lib/docker/containers/aa9889a300017f1a57074ca64dca61ef09fbc66215d920eab890fd2cc2aa7ea3/resolv.conf",
+        "HostnamePath": "/var/lib/docker/containers/aa9889a300017f1a57074ca64dca61ef09fbc66215d920eab890fd2cc2aa7ea3/hostname",
+        "HostsPath": "/var/lib/docker/containers/aa9889a300017f1a57074ca64dca61ef09fbc66215d920eab890fd2cc2aa7ea3/hosts",
+        "LogPath": "/var/lib/docker/containers/aa9889a300017f1a57074ca64dca61ef09fbc66215d920eab890fd2cc2aa7ea3/aa9889a300017f1a57074ca64dca61ef09fbc66215d920eab890fd2cc2aa7ea3-json.log",
+        "Name": "/cortex",
+--
+            "Image": "thehiveproject/cortex:3.1.1-1",
+            "Volumes": {
+                "/var/lib/docker": {}
+            },
+            "WorkingDir": "/opt/cortex",
+            "Entrypoint": [
+PRETTY_NAME="Debian GNU/Linux 10 (buster)"
+NAME="Debian GNU/Linux"
+VERSION_ID="10"
+VERSION="10 (buster)"
+VERSION_CODENAME=buster
+ID=debian
+HOME_URL="https://www.debian.org/"
+SUPPORT_URL="https://www.debian.org/support"
+BUG_REPORT_URL="https://bugs.debian.org/"
+
+[0;32m[3] Python Environment...[0m
+Python versions available:
+/usr/bin/python
+Python 2.7.16
+/usr/bin/python2
+Python 2.7.16
+/usr/bin/python3
+Python 3.7.3
+
+[0;32m[4] Package Managers Available...[0m
+  pip: NOT FOUND
+  pip3: NOT FOUND
+/usr/bin/apt-get
+  apt-get: FOUND
+  yum: NOT FOUND
+
+[0;32m[5] CortexUtils Status...[0m
+  cortexutils: NOT INSTALLED
+
+[0;32m[6] Analyzers Directory Structure...[0m
+Checking /opt/Cortex-Analyzers/analyzers:
+total 600
+drwxrwxr-x 150 1000 1000 4096 Nov 18 00:33 .
+drwxrwxr-x  10 1000 1000 4096 Nov 18 00:33 ..
+drwxrwxr-x   3 1000 1000 4096 Nov 18 00:33 AILOnionLookup
+drwxrwxr-x   3 1000 1000 4096 Nov 18 00:33 AbuseIPDB
+drwxrwxr-x   3 1000 1000 4096 Nov 18 00:33 Abuse_Finder
+drwxrwxr-x   3 1000 1000 4096 Nov 18 00:33 AnyRun
+drwxrwxr-x   2 1000 1000 4096 Nov 18 00:33 Autofocus
+drwxrwxr-x   2 1000 1000 4096 Nov 18 00:33 Axur
+drwxrwxr-x   2 1000 1000 4096 Nov 18 00:33 BackscatterIO
+
+Checking /opt/cortex/analyzers:
+
+[0;32m[7] Cortex Configuration (analyzer paths)...[0m
+analyzer {
+  # Chemin local des analyseurs
+  paths = [
+    "/opt/cortex/analyzers/analyzers"
+  ]
+  
+  # URLs pour télécharger les définitions (inclut MISP-modules)
+  urls = [
+    "https://download.thehive-project.org/analyzers.json",
+    "http://misp-modules:6666"
+  ]
+  
+  # Fork join executor
+  fork-join-executor {
+    parallelism-min = 2
+    parallelism-factor = 2.0
+    parallelism-max = 4
+  }
+}
+--
+    "/opt/cortex/analyzers/responders"
+  ]
+  
+  # URLs pour télécharger les définitions
+  urls = [
+    "https://download.thehive-project.org/responders.json"
+  ]
+  
+  fork-join-executor {
+    parallelism-min = 2
+    parallelism-factor = 2.0
+--
+# Cache for analyzers
+cache {
+  job = 10 minutes
+  user = 5 minutes
+  organization = 5 minutes
+}
+
+# Docker configuration for analyzers
+docker {
+  auto-update = false
+}
+
+# HTTP Server
+http.port = 9001
+play.server.http.port = 9001
+
+# Max file upload size (100MB)
+play.http.parser.maxDiskBuffer = 100MB
+
+[0;32m[8] Job Directory Status...[0m
+total 8
+drwxr-xr-x 2 cortex root 4096 Nov 20 15:38 .
+drwxrwxrwt 1 root   root 4096 Nov 20 15:45 ..
+
+[0;32m[9] Elasticsearch Connection...[0m
+"status":"yellow"
+
+[0;32m[10] Recent Cortex Logs...[0m
+time="2025-11-20T15:57:20Z" level=warning msg="/home/smail/mini-soc/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
+  No relevant logs found
+
+[0;32m[11] Network Connectivity...[0m
+Can Cortex reach Elasticsearch?
+PING elasticsearch (172.20.0.8) 56(84) bytes of data.
+64 bytes from elasticsearch.mini-soc_soc-network (172.20.0.8): icmp_seq=1 ttl=64 time=0.117 ms
+64 bytes from elasticsearch.mini-soc_soc-network (172.20.0.8): icmp_seq=2 ttl=64 time=0.105 ms
+
+--- elasticsearch ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 22ms
+rtt min/avg/max/mdev = 0.105/0.111/0.117/0.006 ms
+  YES
+
+[0;32m[12] Docker Volumes & Mounts...[0m
+            "Mounts": [
+                {
+                    "Type": "volume",
+                    "Source": "mini-soc_cortex-data",
+                    "Target": "/var/lib/cortex",
+                    "VolumeOptions": {}
+                }
+            ],
+            "MaskedPaths": null,
+            "ReadonlyPaths": null
+        },
+        "GraphDriver": {
+            "Data": {
+                "LowerDir": "/var/lib/docker/overlay2/d321d481953ddb71c7b3cae61c8eb387e72b0042d245ca9f123d6a2928a662a3-init/diff:/var/lib/docker/overlay2/238924c2e72fa87bb7cd55db0ff0e91c9cfdc6c82bd93eb64a4bff677908e496/diff:/var/lib/docker/overlay2/fe094771dd5b2567e69a911063edb2998a61640d5e5b65188eea103b4f75cbb9/diff:/var/lib/docker/overlay2/02b647eba1d6c10086573bbd20cb5127985f8dcdd8d8fa07be46ca01ffb2b13a/diff:/var/lib/docker/overlay2/b601c44edcd21198ed700abb3eab8503200aa3102bd4a30534473b198c93c2f5/diff:/var/lib/docker/overlay2/fb553dbdc94cc527846cfe051d3f5f0ace47c547183e1d09edbdf2a2923ea474/diff:/var/lib/docker/overlay2/1f9c0ff67609e9c85155398403762b555533bf88ceefcf4861c33b29f01d0612/diff:/var/lib/docker/overlay2/ca1bf931cdcd0c1a921fdfef286a0c4fc4ba19667dc4cdf2db2b263a31491511/diff:/var/lib/docker/overlay2/214079fae3738e0edfefb1bd52db74355da6f01112a7879b5bc63deccc070cd2/diff:/var/lib/docker/overlay2/b0df7b7399947a2f110617a2b564d33f66f0e8ab3acb65b14f4cd263109728cd/diff:/var/lib/docker/overlay2/25c84d39c114ef5c98deacd977267cc1b51a7ab453dc3e3e9e30ac414e168f09/diff:/var/lib/docker/overlay2/a2820c6e4f3ffba314257551b7c07733a3e11f46860e93de1a9c1375efba7cdd/diff:/var/lib/docker/overlay2/01bfaf78b34d913dbdea983fedfeb12c5a134092dde38a5174f5fa3912b03d2b/diff:/var/lib/docker/overlay2/1fe4a93918a4cddf1021c593655e7a1add9f0426509ad92e7a80beb962fbb94a/diff",
+                "MergedDir": "/var/lib/docker/overlay2/d321d481953ddb71c7b3cae61c8eb387e72b0042d245ca9f123d6a2928a662a3/merged",
+                "UpperDir": "/var/lib/docker/overlay2/d321d481953ddb71c7b3cae61c8eb387e72b0042d245ca9f123d6a2928a662a3/diff",
+                "WorkDir": "/var/lib/docker/overlay2/d321d481953ddb71c7b3cae61c8eb387e72b0042d245ca9f123d6a2928a662a3/work"
+            },
+            "Name": "overlay2"
+        },
+        "Mounts": [
+            {
+                "Type": "volume",
+                "Name": "mini-soc_cortex-data",
+                "Source": "/var/lib/docker/volumes/mini-soc_cortex-data/_data",
+                "Destination": "/var/lib/cortex",
+                "Driver": "local",
+                "Mode": "z",
+                "RW": true,
+                "Propagation": ""
+            },
+            {
+                "Type": "volume",
+                "Name": "7752a534ca59a9b8f714557dbd92fdfb49419a7df5af6ae5fb3c22ea2911948e",
+                "Source": "/var/lib/docker/volumes/7752a534ca59a9b8f714557dbd92fdfb49419a7df5af6ae5fb3c22ea2911948e/_data",
+                "Destination": "/var/lib/docker",
+                "Driver": "local",
+                "Mode": "",
+                "RW": true,
+                "Propagation": ""
+            },
+
+[0;32m[13] Test Analyzer Execution...[0m
+Attempting to run a simple analyzer...
+Abuse_Finder.json
+README.md
+abusefinder.py
+assets
+requirements.txt
+  Abuse_Finder directory exists
+
+[0;32m[14] Docker Socket Access...[0m
+srw-rw---- 1 cortex 1002 0 Nov 20 15:11 /var/run/docker.sock
+
+[0;32m[15] Container Resources...[0m
+CONTAINER   CPU %     MEM USAGE / LIMIT
+cortex      0.87%     597.2MiB / 15.33GiB
+
+[0;32m[16] Debian Repositories Status...[0m
+# deb http://snapshot.debian.org/archive/debian/20210208T000000Z buster main
+deb http://deb.debian.org/debian buster main
+# deb http://snapshot.debian.org/archive/debian-security/20210208T000000Z buster/updates main
+deb http://security.debian.org/debian-security buster/updates main
+# deb http://snapshot.debian.org/archive/debian/20210208T000000Z buster-updates main
+deb http://deb.debian.org/debian buster-updates main
+
+[0;34m========================================[0m
+[0;34m  DIAGNOSTIC COMPLETE[0m
+[0;34m========================================[0m
+
+[1;33mKey Issues to Check:[0m
+1. Is Python 3.7 available?
+2. Is cortexutils installed?
+3. Are analyzers mounted correctly?
+4. Is the job directory accessible?
+5. Can Cortex connect to Elasticsearch?
+
+[1;33mNext Steps:[0m
+Review the output above and identify the root cause.
+

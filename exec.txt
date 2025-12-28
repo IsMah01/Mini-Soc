@@ -1,0 +1,61 @@
+# Set the kibana_system password in Elasticsearch
+docker exec -it elasticsearch /usr/share/elasticsearch/bin/elasticsearch-reset-password -u kibana_system -i
+
+
+
+docker compose restart kibana
+docker compose logs -f kibana | grep -E "Kibana is now available|ERROR|security_exception"
+
+
+
+
+
+
+# Create a TheHive user in Elasticsearch
+docker exec -it elasticsearch curl -X POST "http://localhost:9200/_security/user/thehive_user" \
+  -u elastic:changeme123 \
+  -H "Content-Type: application/json" \
+  -d '{
+    "password": "changeme123",
+    "roles": ["superuser"],
+    "full_name": "TheHive Service Account"
+  }'
+
+
+
+  # Se connecter à MinIO depuis le container
+docker compose exec minio mc alias set local http://localhost:9000 admin changeme123
+
+# Créer le bucket "thehive"
+docker compose exec minio mc mb local/thehive
+
+# Vérifier que le bucket est créé
+docker compose exec minio mc ls local/
+
+
+# Modifier toutes les occurrences de baseurl
+docker exec misp-core sed -i "s/'baseurl' => 'https:\/\/localhost'/'baseurl' => 'https:\/\/localhost:8443'/g" /var/www/MISP/app/Config/config.php
+docker exec misp-core sed -i "s/'external_baseurl' => 'https:\/\/localhost'/'external_baseurl' => 'https:\/\/localhost:8443'/g" /var/www/MISP/app/Config/config.php
+docker exec misp-core sed -i "s/'rest_client_baseurl' => 'https:\/\/localhost'/'rest_client_baseurl' => 'https:\/\/localhost:8443'/g" /var/www/MISP/app/Config/config.php
+
+# Modifier aussi le JavaScript
+docker exec misp-core sed -i "s/var baseurl = 'https:\/\/localhost'/var baseurl = 'https:\/\/localhost:8443'/g" /var/www/MISP/app/View/Layouts/default.ctp 2>/dev/null || true
+
+# Redémarrer PHP-FPM
+docker exec misp-core pkill -USR2 php-fpm
+
+
+
+
+cortex admin : admin/admin
+
+coetex test: test/test  apikey: 6Zifliv4yLlTiYcidFJ6aGls7VF4NbP2
+
+thehive: test@thehi...../test
+
+
+
+Username : admin@shuffle.local  Password : ShuffleAdmin123! (ou autre)
+
+
+apikey=iWtYr7XOrugw5HqUKg4HvXizcL7CV+qD

@@ -1,0 +1,38 @@
+cluster.name: "mini-soc-cluster"
+node.name: "elasticsearch"
+network.host: 0.0.0.0
+
+# Discovery
+discovery.type: single-node
+
+# Security - MODIFIÉ pour ES 7.x
+xpack.security.enabled: true
+xpack.security.http.ssl.enabled: false
+xpack.security.transport.ssl.enabled: false
+
+# Monitoring - MODIFIÉ (pas de warning dans 7.x)
+xpack.monitoring.collection.enabled: true
+
+# License
+xpack.license.self_generated.type: basic
+
+# Paths
+path.data: /usr/share/elasticsearch/data
+path.logs: /usr/share/elasticsearch/logs
+
+# Memory
+bootstrap.memory_lock: true
+
+# HTTP
+http.port: 9200
+http.cors.enabled: true
+http.cors.allow-origin: "*"
+http.cors.allow-headers: "X-Requested-With, Content-Type, Content-Length, Authorization"
+
+# Index settings
+indices.query.bool.max_clause_count: 10000
+
+# Compatibility - AJOUTÉ pour ES 7.x
+discovery.seed_hosts: []
+
+xpack.security.authc.api_key.enabled: true

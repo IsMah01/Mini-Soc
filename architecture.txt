@@ -1,0 +1,2412 @@
+┌──(smail㉿kali)-[~]
+└─$ cd mini-soc                      
+                                                                                                                                  
+┌──(smail㉿kali)-[~/mini-soc]
+└─$ tree       
+.
+├── cassandra
+│   └── data
+├── cortex
+│   ├── analyzers
+│   │   ├── analyzers
+│   │   │   ├── Abuse_Finder
+│   │   │   │   ├── Abuse_Finder.json
+│   │   │   │   ├── abusefinder.py
+│   │   │   │   ├── assets
+│   │   │   │   │   └── abuse_finder_longreport.png
+│   │   │   │   ├── README.md
+│   │   │   │   └── requirements.txt
+│   │   │   ├── AbuseIPDB
+│   │   │   │   ├── AbuseIPDB.json
+│   │   │   │   ├── abuseipdb.py
+│   │   │   │   ├── assets
+│   │   │   │   │   ├── abuseipdb.png
+│   │   │   │   │   └── long_report.png
+│   │   │   │   ├── README.md
+│   │   │   │   └── requirements.txt
+│   │   │   ├── AILOnionLookup
+│   │   │   │   ├── AIL_OnionLookup.json
+│   │   │   │   ├── assets
+│   │   │   │   │   ├── onionlookup-longreport.png
+│   │   │   │   │   └── onionlookup-shortreport.png
+│   │   │   │   ├── Dockerfile
+│   │   │   │   ├── OnionLookup.py
+│   │   │   │   ├── README.md
+│   │   │   │   └── requirements.txt
+│   │   │   ├── AnyRun
+│   │   │   │   ├── anyrun_analyzer.py
+│   │   │   │   ├── AnyRun_Sandbox_Analysis.json
+│   │   │   │   ├── assets
+│   │   │   │   │   ├── AnyRun.png
+│   │   │   │   │   ├── long_report.png
+│   │   │   │   │   └── short_report.png
+│   │   │   │   ├── README.md
+│   │   │   │   └── requirements.txt
+│   │   │   ├── Autofocus
+│   │   │   │   ├── analyzer.py
+│   │   │   │   ├── Autofocus_GetSampleAnalysis.json
+│   │   │   │   ├── Autofocus_SearchIOC.json
+│   │   │   │   ├── Autofocus_SearchJSON.json
+│   │   │   │   └── requirements.txt
+│   │   │   ├── Axur
+│   │   │   │   ├── axur_analyzer.json
+│   │   │   │   ├── axur_analyzer.py
+│   │   │   │   ├── README.md
+│   │   │   │   └── requirements.txt
+│   │   │   ├── BackscatterIO
+│   │   │   │   ├── BackscatterIO_Enrichment.json
+│   │   │   │   ├── BackscatterIO_GetObservations.json
+│   │   │   │   ├── backscatter-io.py
+│   │   │   │   └── requirements.txt
+│   │   │   ├── C1fApp
+│   │   │   │   ├── C1fApp_osint.json
+│   │   │   │   ├── cifquery.py
+│   │   │   │   ├── input
+│   │   │   │   ├── README
+│   │   │   │   └── requirements.txt
+│   │   │   ├── Capa
+│   │   │   │   ├── assets
+│   │   │   │   │   ├── capa.png
+│   │   │   │   │   └── long_report.png
+│   │   │   │   ├── CapaAnalyze.py
+│   │   │   │   ├── Capa.json
+│   │   │   │   ├── CHANGELOG.md
+│   │   │   │   ├── Dockerfile
+│   │   │   │   ├── fetch_capa.sh
+│   │   │   │   └── requirements.txt
+│   │   │   ├── Censys
+│   │   │   │   ├── assets
+│   │   │   │   │   ├── censys.png
+│   │   │   │   │   └── long_report.png
+│   │   │   │   ├── censys_analyzer.py
+│   │   │   │   ├── Censys.json
+│   │   │   │   ├── README.md
+│   │   │   │   └── requirements.txt
+│   │   │   ├── CERTatPassiveDNS
+│   │   │   │   ├── CERTatPassiveDNS.json
+│   │   │   │   ├── certat_passivedns.py
+│   │   │   │   ├── Dockerfile
+│   │   │   │   ├── README.md
+│   │   │   │   ├── requirements.txt
+│   │   │   │   ├── whois.sh
+│   │   │   │   └── whois_wrapper.py
+│   │   │   ├── ChainAbuse
+│   │   │   │   ├── assets
+│   │   │   │   │   ├── chainabuse-logo.png
+│   │   │   │   │   └── chainabuse-long-report.png
+│   │   │   │   ├── ChainAbuse.json
+│   │   │   │   ├── ChainAbuse.py
+│   │   │   │   └── requirements.txt
+│   │   │   ├── CheckPhish
+│   │   │   │   ├── CheckPhish.json
+│   │   │   │   ├── CheckPhish.py
+│   │   │   │   ├── CheckPhish_Submit.json
+│   │   │   │   └── requirements.txt
+│   │   │   ├── CIRCLHashlookup
+│   │   │   │   ├── assets
+│   │   │   │   │   ├── circlhashlookup_logo.png
+│   │   │   │   │   ├── circlhashlookup_long_report.png
+│   │   │   │   │   └── circlhashlookup_verdict.png
+│   │   │   │   ├── circlhashlookup_analyzer.py
+│   │   │   │   ├── CIRCLHashlookup.json
+│   │   │   │   └── requirements.txt
+│   │   │   ├── CIRCLPassiveDNS
+│   │   │   │   ├── assets
+│   │   │   │   │   ├── passivedns.png
+│   │   │   │   │   ├── sc-long-circlpassivedns.png
+│   │   │   │   │   └── sc-short-circlpassivedns.png
+│   │   │   │   ├── CIRCLPassiveDNS.json
+│   │   │   │   ├── circl_passivedns.py
+│   │   │   │   ├── README.md
+│   │   │   │   └── requirements.txt
+│   │   │   ├── CIRCLPassiveSSL
+│   │   │   │   ├── assets
+│   │   │   │   │   ├── pssl.png
+│   │   │   │   │   ├── sc-long-circlpassivessl.png
+│   │   │   │   │   └── sc-short-circlpassivessl.png
+│   │   │   │   ├── CIRCLPassiveSSL.json
+│   │   │   │   ├── circl_passivessl.py
+│   │   │   │   ├── README.md
+│   │   │   │   └── requirements.txt
+│   │   │   ├── CIRCLVulnerabilityLookup
+│   │   │   │   ├── assets
+│   │   │   │   │   ├── circl_vulnerabilitylookup.png
+│   │   │   │   │   ├── circl_vulnerabilitylookup_report.png
+│   │   │   │   │   └── circl_vulnerabilitylookup_shortreport.png
+│   │   │   │   ├── CIRCLVulnerabilityLookup.json
+│   │   │   │   ├── circl_vulnerabilitylookup.py
+│   │   │   │   ├── README.md
+│   │   │   │   └── requirements.txt
+│   │   │   ├── CISMCAP
+│   │   │   │   ├── assets
+│   │   │   │   │   ├── CISMCAP_file.png
+│   │   │   │   │   ├── CISMCAP_IP.png
+│   │   │   │   │   └── cis_mcap_logo.png
+│   │   │   │   ├── CISMCAP.json
+│   │   │   │   ├── mcap.py
+│   │   │   │   ├── README.md
+│   │   │   │   └── requirements.txt
+│   │   │   ├── ClamAV
+│   │   │   │   ├── ClamAV_FileInfo.json
+│   │   │   │   ├── Dockerfile
+│   │   │   │   ├── entrypoint.sh
+│   │   │   │   ├── pyclam_analyzer.py
+│   │   │   │   └── requirements.txt
+│   │   │   ├── Cluster25
+│   │   │   │   ├── assets
+│   │   │   │   │   ├── cluster25_logo.png
+│   │   │   │   │   ├── long_report_sample.png
+│   │   │   │   │   └── short_report_sample.png
+│   │   │   │   ├── C25CortexAnalyzer_investigate.json
+│   │   │   │   ├── c25_cortex_analyzer.py
+│   │   │   │   ├── README.md
+│   │   │   │   └── requirements.txt
+│   │   │   ├── ClusterHawk
+│   │   │   │   ├── ClusterHawk.json
+│   │   │   │   ├── ClusterHawk.py
+│   │   │   │   ├── README.md
+│   │   │   │   └── requirements.txt
+│   │   │   ├── Crowdsec
+│   │   │   │   ├── assets
+│   │   │   │   │   ├── crowdsec-analyzer-result-example.png
+│   │   │   │   │   ├── crowdsec-logo.png
+│   │   │   │   │   └── crowdsec-report-long.png
+│   │   │   │   ├── Crowdsec_analyzer.json
+│   │   │   │   ├── crowdsec_analyzer.py
+│   │   │   │   ├── crowdsec_api.py
+│   │   │   │   ├── README.md
+│   │   │   │   └── requirements.txt
+│   │   │   ├── CrowdstrikeFalcon
+│   │   │   │   ├── assets
+│   │   │   │   │   ├── analyzers-list-sandbox.png
+│   │   │   │   │   ├── cortex-conf-alerts.png
+│   │   │   │   │   ├── cortex-conf-deviceinfo.png
+│   │   │   │   │   ├── cortex-conf-sandbox.png
+│   │   │   │   │   ├── cortex-conf-vulns.png
+│   │   │   │   │   ├── long-report-alerts.png
+│   │   │   │   │   ├── long-report-deviceinfo.png
+│   │   │   │   │   ├── long-report-sandbox.png
+│   │   │   │   │   ├── long-report-vulns.png
+│   │   │   │   │   ├── short-report-alerts.png
+│   │   │   │   │   ├── short-report-deviceinfo.png
+│   │   │   │   │   ├── short-report-sandbox.png
+│   │   │   │   │   └── short-report-vulns.png
+│   │   │   │   ├── CrowdstrikeFalcon_getDeviceAlerts.json
+│   │   │   │   ├── CrowdstrikeFalcon_getDeviceAlerts.py
+│   │   │   │   ├── CrowdstrikeFalcon_getDeviceDetails.json
+│   │   │   │   ├── CrowdstrikeFalcon_getDeviceDetails.py
+│   │   │   │   ├── CrowdstrikeFalcon_GetDeviceVulnerabilities.json
+│   │   │   │   ├── CrowdstrikeFalcon_getDeviceVulnerabilities.py
+│   │   │   │   ├── CrowdstrikeFalcon_Sandbox_Android.json
+│   │   │   │   ├── CrowdstrikeFalcon_Sandbox_Linux.json
+│   │   │   │   ├── CrowdstrikeFalcon_Sandbox_MacOS.json
+│   │   │   │   ├── CrowdstrikeFalcon_Sandbox.py
+│   │   │   │   ├── CrowdstrikeFalcon_Sandbox_Win10.json
+│   │   │   │   ├── CrowdstrikeFalcon_Sandbox_Win11.json
+│   │   │   │   ├── CrowdstrikeFalcon_Sandbox_Win7_64.json
+│   │   │   │   ├── CrowdstrikeFalcon_Sandbox_Win7.json
+│   │   │   │   ├── README.md
+│   │   │   │   └── requirements.txt
+│   │   │   ├── Crtsh
+│   │   │   │   ├── assets
+│   │   │   │   │   ├── logo.png
+│   │   │   │   │   └── long_report.png
+│   │   │   │   ├── Crtsh.json
+│   │   │   │   ├── crtshquery.py
+│   │   │   │   ├── README.md
+│   │   │   │   └── requirements.txt
+│   │   │   ├── CuckooSandbox
+│   │   │   │   ├── assets
+│   │   │   │   │   ├── cuckoosandbox.png
+│   │   │   │   │   └── long_report.png
+│   │   │   │   ├── cuckoosandbox_analyzer.py
+│   │   │   │   ├── CuckooSandbox_File_Analysis.json
+│   │   │   │   ├── CuckooSandbox_Url_Analysis.json
+│   │   │   │   ├── README.md
+│   │   │   │   └── requirements.txt
+│   │   │   ├── CyberChef
+│   │   │   │   ├── assets
+│   │   │   │   │   ├── cyberchef.png
+│   │   │   │   │   └── long_report.png
+│   │   │   │   ├── CyberChef_FromBase64.json
+│   │   │   │   ├── CyberChef_FromCharCode.json
+│   │   │   │   ├── CyberChef_FromHex.json
+│   │   │   │   ├── cyberchef.py
+│   │   │   │   ├── README.md
+│   │   │   │   └── requirements.txt
+│   │   │   ├── CyberCrime-Tracker
+│   │   │   │   ├── assets
+│   │   │   │   │   ├── cybercrime.png
+│   │   │   │   │   └── long_report.png
+│   │   │   │   ├── cct.py
+│   │   │   │   ├── CyberCrimeTracker.json
+│   │   │   │   ├── README.md
+│   │   │   │   └── requirements.txt
+│   │   │   ├── Cyberprotect
+│   │   │   │   ├── assets
+│   │   │   │   │   ├── long_report.png
+│   │   │   │   │   └── threatscore.jpg
+│   │   │   │   ├── CyberprotectAnalyzer.py
+│   │   │   │   ├── Cyberprotect_ThreatScore.json
+│   │   │   │   ├── README.md
+│   │   │   │   └── requirements.txt
+│   │   │   ├── Cylance
+│   │   │   │   ├── assets
+│   │   │   │   │   ├── cylance_host_lookup_long.png
+│   │   │   │   │   ├── cylance_logo.png
+│   │   │   │   │   ├── cylance_sample_lookup_long.png
+│   │   │   │   │   └── cylance_sample_lookup_short.png
+│   │   │   │   ├── Cylance.json
+│   │   │   │   ├── cylance.py
+│   │   │   │   ├── README.md
+│   │   │   │   └── requirements.txt
+│   │   │   ├── Diario
+│   │   │   │   ├── assets
+│   │   │   │   │   ├── diario_get_report_long.png
+│   │   │   │   │   ├── diario_get_report_short.png
+│   │   │   │   │   ├── diario_scan_long.png
+│   │   │   │   │   ├── diario_scan_short.png
+│   │   │   │   │   └── logo.png
+│   │   │   │   ├── diario_analyzer.py
+│   │   │   │   ├── Diario_GetReport.json.disabled
+│   │   │   │   ├── Diario_Scan.json.disabled
+│   │   │   │   └── requirements.txt
+│   │   │   ├── DNSDB
+│   │   │   │   ├── DNSDB_DomainName.json
+│   │   │   │   ├── DNSDB_IPHistory.json
+│   │   │   │   ├── DNSDB_NameHistory.json
+│   │   │   │   ├── dnsdb.py
+│   │   │   │   ├── dnsdb_query.py
+│   │   │   │   └── requirements.txt
+│   │   │   ├── DNSdumpster
+│   │   │   │   ├── DNSdumpster.json
+│   │   │   │   ├── dnsdumpster.py
+│   │   │   │   ├── README.md
+│   │   │   │   └── requirements.txt
+│   │   │   ├── DNSLookingglass
+│   │   │   │   ├── assets
+│   │   │   │   │   ├── DNS_Lookingglass_artifacts.png
+│   │   │   │   │   ├── DNS_Lookingglass_long.png
+│   │   │   │   │   └── dshield.png
+│   │   │   │   ├── DNSLookingglass.json
+│   │   │   │   ├── DNSLookingglass_lookup.py
+│   │   │   │   ├── README.md
+│   │   │   │   └── requirements.txt
+│   │   │   ├── DNSSinkhole
+│   │   │   │   ├── DNSSinkhole.json
+│   │   │   │   ├── dnssinkhole.py
+│   │   │   │   └── requirements.txt
+│   │   │   ├── DomainMailSPFDMARC
+│   │   │   │   ├── assets
+│   │   │   │   │   ├── DomainMailSPFDMARC_long.png
+│   │   │   │   │   └── DomainMailSPFDMARC_short.png
+│   │   │   │   ├── domainMailSPFDMARC_get_reports.json
+│   │   │   │   ├── domainMailSPFDMARC.py
+│   │   │   │   └── requirements.txt
+│   │   │   ├── DomainTools
+│   │   │   │   ├── domaintools_analyzer.py
+│   │   │   │   ├── DomainTools_HostingHistory.json
+│   │   │   │   ├── DomainTools_Reputation.json
+│   │   │   │   ├── DomainTools_ReverseIP.json
+│   │   │   │   ├── DomainTools_ReverseIPWhois.json
+│   │   │   │   ├── DomainTools_ReverseNameServer.json
+│   │   │   │   ├── DomainTools_ReverseWhois.json
+│   │   │   │   ├── DomainTools_Risk.json
+│   │   │   │   ├── DomainTools_WhoisHistory.json
+│   │   │   │   ├── DomainTools_WhoisLookup.json
+│   │   │   │   ├── DomainTools_WhoisLookupUnparsed.json
+│   │   │   │   └── requirements.txt
+│   │   │   ├── DomainToolsIris
+│   │   │   │   ├── assets
+│   │   │   │   │   ├── domaintools_favicon.svg
+│   │   │   │   │   ├── DomainToolsIris_Investigate_long.png
+│   │   │   │   │   ├── DomainToolsIris_Investigate_short.png
+│   │   │   │   │   ├── DomainToolsIris_Pivot_long.png
+│   │   │   │   │   ├── DomainToolsIris_Pivot_short.png
+│   │   │   │   │   └── domaintools_logo.png
+│   │   │   │   ├── domaintoolsiris_analyzer.py
+│   │   │   │   ├── DomainToolsIris_Investigate.json
+│   │   │   │   ├── DomainToolsIris_Pivot.json
+│   │   │   │   ├── README.md
+│   │   │   │   └── requirements.txt
+│   │   │   ├── DShield
+│   │   │   │   ├── assets
+│   │   │   │   │   ├── dshield.png
+│   │   │   │   │   └── long_report.png
+│   │   │   │   ├── DShield_lookup.json
+│   │   │   │   ├── DShield_lookup.py
+│   │   │   │   ├── README.md
+│   │   │   │   └── requirements.txt
+│   │   │   ├── EchoTrail
+│   │   │   │   ├── assets
+│   │   │   │   │   ├── echotrail_filename_report.png
+│   │   │   │   │   └── echotrail_logo.png
+│   │   │   │   ├── EchoTrail.json
+│   │   │   │   ├── echotrail.py
+│   │   │   │   ├── README
+│   │   │   │   └── requirements.txt
+│   │   │   ├── EclecticIQ
+│   │   │   │   ├── assets
+│   │   │   │   │   └── logo.png
+│   │   │   │   ├── eclecticiq.py
+│   │   │   │   ├── EclecticIQ_SearchObservable.json
+│   │   │   │   ├── README.md
+│   │   │   │   └── requirements.txt
+│   │   │   ├── Elasticsearch
+│   │   │   │   ├── Elasticsearch_Analysis.json
+│   │   │   │   ├── elk.py
+│   │   │   │   └── requirements.txt
+│   │   │   ├── EmailRep
+│   │   │   │   ├── assets
+│   │   │   │   │   ├── emailrep.png
+│   │   │   │   │   └── long_report.png
+│   │   │   │   ├── emailrep_analyzer.py
+│   │   │   │   ├── EmailRep.json
+│   │   │   │   ├── README.md
+│   │   │   │   └── requirements.txt
+│   │   │   ├── EmergingThreats
+│   │   │   │   ├── assets
+│   │   │   │   │   ├── long_report_domain.png
+│   │   │   │   │   ├── long_report_hash.png
+│   │   │   │   │   ├── long_report_ip.png
+│   │   │   │   │   └── proofpoint.png
+│   │   │   │   ├── emergingthreats_analyzer.py
+│   │   │   │   ├── EmergingThreats_DomainInfo.json
+│   │   │   │   ├── EmergingThreats_IPInfo.json
+│   │   │   │   ├── EmergingThreats_MalwareInfo.json
+│   │   │   │   ├── README.md
+│   │   │   │   └── requirements.txt
+│   │   │   ├── EmlParser
+│   │   │   │   ├── assets
+│   │   │   │   │   ├── emlparser-extracted-observables.png
+│   │   │   │   │   ├── emlparser-long.png
+│   │   │   │   │   ├── emlparser-short.png
+│   │   │   │   │   └── sb-logo.jpg
+│   │   │   │   ├── Dockerfile
+│   │   │   │   ├── EmlParser.json
+│   │   │   │   ├── parse.py
+│   │   │   │   ├── README.md
+│   │   │   │   └── requirements.txt
+│   │   │   ├── FalconSandbox
+│   │   │   │   ├── FalconSandbox.json
+│   │   │   │   ├── FalconSandbox.py
+│   │   │   │   └── requirements.txt
+│   │   │   ├── FileInfo
+│   │   │   │   ├── Dockerfile
+│   │   │   │   ├── fileinfo_analyzer.py
+│   │   │   │   ├── FileInfo.json
+│   │   │   │   ├── README.txt
+│   │   │   │   ├── requirements.txt
+│   │   │   │   └── submodules
+│   │   │   │       ├── __init__.py
+│   │   │   │       ├── submodule_base.py
+│   │   │   │       ├── submodule_floss.py
+│   │   │   │       ├── submodule_gzip.py
+│   │   │   │       ├── submodule_ioc_parser.py
+│   │   │   │       ├── submodule_manalyze.py
+│   │   │   │       ├── submodule_metadata.py
+│   │   │   │       ├── submodule_oletools.py
+│   │   │   │       ├── submodule_outlook.py
+│   │   │   │       ├── submodule_pdfid.py
+│   │   │   │       ├── submodule_pe.py
+│   │   │   │       └── submodule_rtfobj.py
+│   │   │   ├── FireEyeiSight
+│   │   │   │   ├── assets
+│   │   │   │   │   ├── fireeyeisight.png
+│   │   │   │   │   └── long_report.png
+│   │   │   │   ├── FireEyeiSight.json
+│   │   │   │   ├── fireeyeisight_lookup.py
+│   │   │   │   ├── README.md
+│   │   │   │   └── requirements.txt
+│   │   │   ├── FireHOLBlocklists
+│   │   │   │   ├── assets
+│   │   │   │   │   ├── firehol.png
+│   │   │   │   │   └── long_report.png
+│   │   │   │   ├── FireHOLBlocklists.json
+│   │   │   │   ├── firehol_blocklists.py
+│   │   │   │   ├── README.md
+│   │   │   │   ├── requirements.txt
+│   │   │   │   └── test_firehol_blocklists.py
+│   │   │   ├── ForcepointWebsensePing
+│   │   │   │   ├── assets
+│   │   │   │   │   ├── forcepoin_logo.png
+│   │   │   │   │   ├── ForcepointWebsensePing_long.PNG
+│   │   │   │   │   └── ForcepointWebsensePing_short.PNG
+│   │   │   │   ├── ForcepointWebsensePing.json
+│   │   │   │   ├── forcepointwebsenseping.py
+│   │   │   │   ├── README.md
+│   │   │   │   └── requirements.txt
+│   │   │   ├── Fortiguard
+│   │   │   │   ├── assets
+│   │   │   │   │   ├── fortiguard.png
+│   │   │   │   │   └── long_report.png
+│   │   │   │   ├── Fortiguard_URLCategory.json.disabled
+│   │   │   │   ├── README.md
+│   │   │   │   ├── requirements.txt
+│   │   │   │   └── urlcategory.py
+│   │   │   ├── FoxIO
+│   │   │   │   ├── JA4_FoxIO.json
+│   │   │   │   ├── JA4_FoxIO.py
+│   │   │   │   └── requirements.txt
+│   │   │   ├── Gatewatcher_CTI
+│   │   │   │   ├── assets
+│   │   │   │   │   ├── Gatewatcher_CTI_hash_long.png
+│   │   │   │   │   ├── Gatewatcher_CTI_hash_short.png
+│   │   │   │   │   ├── Gatewatcher_CTI_IP_reputation_long.png
+│   │   │   │   │   ├── Gatewatcher_CTI_IP_reputation_short.png
+│   │   │   │   │   ├── Gatewatcher_CTI_leaked_email_long.png
+│   │   │   │   │   ├── Gatewatcher_CTI_leaked_email_short.png
+│   │   │   │   │   └── Gatewatcher_CTI_logo.png
+│   │   │   │   ├── Gatewatcher_CTI.json
+│   │   │   │   ├── Gatewatcher_CTI.py
+│   │   │   │   ├── README.md
+│   │   │   │   └── requirements.txt
+│   │   │   ├── GoogleDNS
+│   │   │   │   ├── DNS_records.py
+│   │   │   │   ├── GoogleDNS_resolve.json
+│   │   │   │   ├── GoogleDNS_resolve.py
+│   │   │   │   └── requirements.txt
+│   │   │   ├── GoogleSafebrowsing
+│   │   │   │   ├── GoogleSafebrowsing.json
+│   │   │   │   ├── requirements.txt
+│   │   │   │   ├── safebrowsing_analyzer.py
+│   │   │   │   └── safebrowsing.py
+│   │   │   ├── GoogleVisionAPI
+│   │   │   │   ├── GoogleVisionAPI_WebDetection.json
+│   │   │   │   ├── GoogleVisionAPI_WebDetection.py
+│   │   │   │   └── requirements.txt
+│   │   │   ├── GreyNoise
+│   │   │   │   ├── assets
+│   │   │   │   │   ├── greynoise.png
+│   │   │   │   │   └── long_report.png
+│   │   │   │   ├── GreyNoise.json
+│   │   │   │   ├── greynoisev3.py
+│   │   │   │   ├── README.md
+│   │   │   │   └── requirements.txt
+│   │   │   ├── GRR
+│   │   │   │   ├── grrclient.py
+│   │   │   │   ├── GRR.json
+│   │   │   │   └── requirements.txt
+│   │   │   ├── Hashdd
+│   │   │   │   ├── assets
+│   │   │   │   │   ├── hashdd.png
+│   │   │   │   │   └── long_report.png
+│   │   │   │   ├── Hashdd_Detail.json
+│   │   │   │   ├── Hashdd.py
+│   │   │   │   ├── Hashdd_Status.json
+│   │   │   │   ├── README.md
+│   │   │   │   └── requirements.txt
+│   │   │   ├── HIBP
+│   │   │   │   ├── hibpquery_analyzer.py
+│   │   │   │   ├── HIBP_Query.json
+│   │   │   │   └── requirements.txt
+│   │   │   ├── Hippocampe
+│   │   │   │   ├── Dockerfile
+│   │   │   │   ├── Hippocampe_hipposcore.json.disabled
+│   │   │   │   ├── Hippocampe_more.json.disabled
+│   │   │   │   ├── hippo.py
+│   │   │   │   └── requirements.txt
+│   │   │   ├── Hunterio
+│   │   │   │   ├── assets
+│   │   │   │   │   ├── hunter.png
+│   │   │   │   │   └── long_report.png
+│   │   │   │   ├── hunterio_analyzer.py
+│   │   │   │   ├── Hunterio_domainsearch.json
+│   │   │   │   ├── README.txt
+│   │   │   │   └── requirements.txt
+│   │   │   ├── HybridAnalysis
+│   │   │   │   ├── HybridAnalysis_analyzer.py
+│   │   │   │   ├── HybridAnalysis_GetReport.json
+│   │   │   │   └── requirements.txt
+│   │   │   ├── IBMXForce
+│   │   │   │   ├── IBMXForce_Lookup.json
+│   │   │   │   ├── ibmxforce_lookup.py
+│   │   │   │   ├── README
+│   │   │   │   └── requirements.txt
+│   │   │   ├── Inoitsu
+│   │   │   │   ├── assets
+│   │   │   │   │   ├── inoitsu_logo.png
+│   │   │   │   │   ├── Inoitsu_long.png
+│   │   │   │   │   └── Inoitsu_short.png
+│   │   │   │   ├── inoitsu_analyzer.py
+│   │   │   │   ├── Inoitsu.json
+│   │   │   │   ├── README.md
+│   │   │   │   └── requirements.txt
+│   │   │   ├── IntezerCommunity
+│   │   │   │   ├── assets
+│   │   │   │   │   ├── intezer.png
+│   │   │   │   │   └── long_report.png
+│   │   │   │   ├── IntezerCommunity.json
+│   │   │   │   ├── intezer_community.py
+│   │   │   │   ├── README.md
+│   │   │   │   └── requirements.txt
+│   │   │   ├── Investigate
+│   │   │   │   ├── investigate_analyzer.py
+│   │   │   │   ├── Investigate_Categorization.json
+│   │   │   │   ├── Investigate_Sample.json
+│   │   │   │   └── requirements.txt
+│   │   │   ├── IP-API
+│   │   │   │   ├── IP-API.json
+│   │   │   │   ├── IP-API.py
+│   │   │   │   └── requirements.txt
+│   │   │   ├── IPinfo
+│   │   │   │   ├── ipinfo_analyzer.py
+│   │   │   │   ├── IPinfo_Details.json
+│   │   │   │   ├── IPinfo_Hosted_Domains.json
+│   │   │   │   ├── ipinfo.py
+│   │   │   │   └── requirements.txt
+│   │   │   ├── IPVoid
+│   │   │   │   ├── IPVoid.json
+│   │   │   │   ├── ipvoid.py
+│   │   │   │   └── requirements.txt
+│   │   │   ├── IVRE
+│   │   │   │   ├── assets
+│   │   │   │   │   └── ivre_logo.png
+│   │   │   │   ├── ivre_analyzer.py
+│   │   │   │   ├── IVRE.json
+│   │   │   │   ├── README.md
+│   │   │   │   └── requirements.txt
+│   │   │   ├── JoeSandbox
+│   │   │   │   ├── assets
+│   │   │   │   │   ├── HTML_report.png
+│   │   │   │   │   ├── images_preview.png
+│   │   │   │   │   └── IP_URL.png
+│   │   │   │   ├── joesandbox_analyzer.py
+│   │   │   │   ├── JoeSandbox_File_Analysis_Inet.json
+│   │   │   │   ├── JoeSandbox_File_Analysis_Noinet.json
+│   │   │   │   ├── JoeSandbox_Url_Analysis.json
+│   │   │   │   ├── README.md
+│   │   │   │   └── requirements.txt
+│   │   │   ├── Jupyter_Analyzer
+│   │   │   │   ├── assets
+│   │   │   │   │   ├── jupyter.png
+│   │   │   │   │   ├── screenshot_cortex_analyzer_settings_example.png
+│   │   │   │   │   ├── screenshot_jupyter_artifacts.png
+│   │   │   │   │   ├── screenshot_jupyter_parameters.png
+│   │   │   │   │   ├── screenshot_jupyter_taxonomies.png
+│   │   │   │   │   ├── screenshot_thehive_artifacts.png
+│   │   │   │   │   ├── screenshot_thehive_report.png
+│   │   │   │   │   ├── screenshot_thehive_taxonomies1.png
+│   │   │   │   │   └── screenshot_thehive_taxonomies2.png
+│   │   │   │   ├── Dockerfile
+│   │   │   │   ├── jupyter.py
+│   │   │   │   ├── Jupyter_Run_Notebook_Analyzer.json
+│   │   │   │   ├── patches
+│   │   │   │   │   └── papermill_iorw.patch
+│   │   │   │   ├── README.md
+│   │   │   │   └── requirements.txt
+│   │   │   ├── KasperskyTIP
+│   │   │   │   ├── KasperskyTIP.json
+│   │   │   │   ├── KasperskyTIP.py
+│   │   │   │   └── requirements.txt
+│   │   │   ├── LdapQuery
+│   │   │   │   ├── LdapQuery.json
+│   │   │   │   ├── ldapQuery.py
+│   │   │   │   ├── README.md
+│   │   │   │   └── requirements.txt
+│   │   │   ├── Lookyloo
+│   │   │   │   ├── assets
+│   │   │   │   │   ├── not_resolved.PNG
+│   │   │   │   │   ├── report1.PNG
+│   │   │   │   │   └── report2.PNG
+│   │   │   │   ├── Lookyloo.json
+│   │   │   │   ├── lookyloo.py
+│   │   │   │   ├── README.md
+│   │   │   │   └── requirements.txt
+│   │   │   ├── LupovisProwl
+│   │   │   │   ├── LupovisProwlAnalyzer.py
+│   │   │   │   ├── LupovisProwl_GetIPReputation.json
+│   │   │   │   ├── README.md
+│   │   │   │   └── requirements.txt
+│   │   │   ├── Malpedia
+│   │   │   │   ├── Dockerfile
+│   │   │   │   ├── malpedia_analyzer.py
+│   │   │   │   ├── Malpedia.json
+│   │   │   │   └── requirements.txt
+│   │   │   ├── Maltiverse
+│   │   │   │   ├── assets
+│   │   │   │   │   ├── long_report.png
+│   │   │   │   │   └── maltiverse.png
+│   │   │   │   ├── maltiverse-client.py
+│   │   │   │   ├── Maltiverse_Report.json
+│   │   │   │   ├── README.md
+│   │   │   │   └── requirements.txt
+│   │   │   ├── MalwareBazaar
+│   │   │   │   ├── assets
+│   │   │   │   │   ├── long_report.png
+│   │   │   │   │   └── malwarebazaar.png
+│   │   │   │   ├── MalwareBazaar_analyzer.py
+│   │   │   │   ├── MalwareBazaar.json
+│   │   │   │   ├── README.md
+│   │   │   │   └── requirements.txt
+│   │   │   ├── MalwareClustering
+│   │   │   │   ├── assets
+│   │   │   │   │   └── MalwareCustering_long.png
+│   │   │   │   ├── data
+│   │   │   │   │   ├── UserDB.TXT
+│   │   │   │   │   └── winapi1024v1.txt
+│   │   │   │   ├── Dockerfile
+│   │   │   │   ├── malwareclustering_api.py
+│   │   │   │   ├── MalwareClustering.json
+│   │   │   │   ├── malwareclustering.py
+│   │   │   │   ├── pylouvain.py
+│   │   │   │   ├── README.md
+│   │   │   │   └── requirements.txt
+│   │   │   ├── Malwares
+│   │   │   │   ├── assets
+│   │   │   │   │   ├── long_report.png
+│   │   │   │   │   └── malwares.png
+│   │   │   │   ├── malwares_api.py
+│   │   │   │   ├── Malwares_GetReport.json
+│   │   │   │   ├── malwares.py
+│   │   │   │   ├── Malwares_Scan.json
+│   │   │   │   ├── README.md
+│   │   │   │   └── requirements.txt
+│   │   │   ├── MaxMind
+│   │   │   │   ├── geoip2
+│   │   │   │   │   ├── database.py
+│   │   │   │   │   ├── errors.py
+│   │   │   │   │   ├── __init__.py
+│   │   │   │   │   ├── models.py
+│   │   │   │   │   ├── records.py
+│   │   │   │   │   └── webservice.py
+│   │   │   │   ├── GeoLite2-City.mmdb
+│   │   │   │   ├── GeoLite2-Country.mmdb
+│   │   │   │   ├── geo.py
+│   │   │   │   ├── ipaddr.py
+│   │   │   │   ├── maxminddb
+│   │   │   │   │   ├── compat.py
+│   │   │   │   │   ├── decoder.py
+│   │   │   │   │   ├── errors.py
+│   │   │   │   │   ├── extension
+│   │   │   │   │   │   └── maxminddb.c
+│   │   │   │   │   ├── __init__.py
+│   │   │   │   │   └── reader.py
+│   │   │   │   ├── MaxMind_GeoIP.json
+│   │   │   │   └── requirements.txt
+│   │   │   ├── MetaDefender
+│   │   │   │   ├── MetaDefenderCloud_GetReport.json
+│   │   │   │   ├── MetaDefenderCloud_Reputation.json
+│   │   │   │   ├── MetaDefenderCloud_Scan.json
+│   │   │   │   ├── MetaDefenderCore_GetReport.json
+│   │   │   │   ├── MetaDefenderCore_Scan.json
+│   │   │   │   ├── metadefender_lookup.py
+│   │   │   │   └── requirements.txt
+│   │   │   ├── MISP
+│   │   │   │   ├── assets
+│   │   │   │   │   ├── long_report.png
+│   │   │   │   │   └── misp.png
+│   │   │   │   ├── mispclient.py
+│   │   │   │   ├── MISP.json
+│   │   │   │   ├── misp.py
+│   │   │   │   ├── README.md
+│   │   │   │   └── requirements.txt
+│   │   │   ├── MISPWarningLists
+│   │   │   │   ├── assets
+│   │   │   │   │   ├── long_report.png
+│   │   │   │   │   └── misp.png
+│   │   │   │   ├── MISPWarningLists.json
+│   │   │   │   ├── mispwarninglists.py
+│   │   │   │   ├── README.md
+│   │   │   │   ├── requirements.txt
+│   │   │   │   └── warninglists_create_db.py
+│   │   │   ├── MnemonicPDNS
+│   │   │   │   ├── Mnemonic_pDNS_Closed.json
+│   │   │   │   ├── Mnemonic_pDNS_Public.json
+│   │   │   │   ├── pdns.py
+│   │   │   │   └── requirements.txt
+│   │   │   ├── MSEntraID
+│   │   │   │   ├── MSEntraID_GetDirectoryAuditLogs.json
+│   │   │   │   ├── MSEntraID_GetManagedDevicesInfo.json
+│   │   │   │   ├── MSEntraID_GetSignIns.json
+│   │   │   │   ├── MSEntraID_GetUserInfo.json
+│   │   │   │   ├── MSEntraID.py
+│   │   │   │   ├── README.md
+│   │   │   │   └── requirements.txt
+│   │   │   ├── MsgParser
+│   │   │   │   ├── lib
+│   │   │   │   │   ├── __init__.py
+│   │   │   │   │   └── msgParser.py
+│   │   │   │   ├── Msg_Parser.json
+│   │   │   │   ├── parse.py
+│   │   │   │   └── requirements.txt
+│   │   │   ├── NERD
+│   │   │   │   ├── assets
+│   │   │   │   │   ├── NERD_logo.png
+│   │   │   │   │   ├── NERD_long.png
+│   │   │   │   │   └── NERD_short.png
+│   │   │   │   ├── nerd_analyzer.py
+│   │   │   │   ├── nerd.json
+│   │   │   │   ├── README.md
+│   │   │   │   └── requirements.txt
+│   │   │   ├── Nessus
+│   │   │   │   ├── Nessus.json
+│   │   │   │   ├── nessus.py
+│   │   │   │   └── requirements.txt
+│   │   │   ├── NSRL
+│   │   │   │   ├── create_db.py
+│   │   │   │   ├── NSRL.json
+│   │   │   │   ├── nsrl.py
+│   │   │   │   └── requirements.txt
+│   │   │   ├── OktaUserLookup
+│   │   │   │   ├── oktauserlookup_analyzer.py
+│   │   │   │   ├── OktaUserLookup.json
+│   │   │   │   └── requirements.txt
+│   │   │   ├── Onyphe
+│   │   │   │   ├── assets
+│   │   │   │   │   ├── ONYPHE_ASM_long.png
+│   │   │   │   │   ├── ONYPHE_ASM_short.png
+│   │   │   │   │   ├── ONYPHE_Ctiscan_long.png
+│   │   │   │   │   ├── ONYPHE_Ctiscan_short.png
+│   │   │   │   │   ├── onyphe_logo.png
+│   │   │   │   │   ├── ONYPHE_Search_long.png
+│   │   │   │   │   ├── ONYPHE_Search_short.png
+│   │   │   │   │   ├── Onyphe_Summary_long.png
+│   │   │   │   │   ├── Onyphe_Summary_short.png
+│   │   │   │   │   ├── ONYPHE_Vulnscan_long.png
+│   │   │   │   │   └── ONYPHE_Vulnscan_short.png
+│   │   │   │   ├── onyphe_analyzer.py
+│   │   │   │   ├── onyphe_api.py
+│   │   │   │   ├── ONYPHE_ASM.json
+│   │   │   │   ├── ONYPHE_Ctiscan.json
+│   │   │   │   ├── ONYPHE_Search.json
+│   │   │   │   ├── ONYPHE_Summary_API.json
+│   │   │   │   ├── ONYPHE_Vulnscan.json
+│   │   │   │   └── requirements.txt
+│   │   │   ├── ONYPHEActiveScan
+│   │   │   │   ├── assets
+│   │   │   │   │   └── onyphe_logo.png
+│   │   │   │   ├── ONYPHE_OnDemandScan.json
+│   │   │   │   ├── onyphe_scanalyzer.py
+│   │   │   │   ├── requirements.txt
+│   │   │   │   └── scanyphe_api.py
+│   │   │   ├── OpenCTI
+│   │   │   │   ├── assets
+│   │   │   │   │   └── logo_opencti.png
+│   │   │   │   ├── Dockerfile
+│   │   │   │   ├── opencti.py
+│   │   │   │   ├── OpenCTI_SearchExactObservable.json
+│   │   │   │   ├── OpenCTI_SearchObservables.json
+│   │   │   │   ├── README.md
+│   │   │   │   └── requirements.txt
+│   │   │   ├── OTXQuery
+│   │   │   │   ├── assets
+│   │   │   │   │   ├── long_report.png
+│   │   │   │   │   └── OTX.png
+│   │   │   │   ├── OTXQuery.json
+│   │   │   │   ├── otxquery.py
+│   │   │   │   ├── README.md
+│   │   │   │   └── requirements.txt
+│   │   │   ├── PaloAltoWildFire
+│   │   │   │   ├── assets
+│   │   │   │   │   ├── palo_alto_logo.png
+│   │   │   │   │   ├── wildfire_file.png
+│   │   │   │   │   └── wildfire_url.png
+│   │   │   │   ├── PaloAltoWildFire.json
+│   │   │   │   ├── README.md
+│   │   │   │   ├── requirements.txt
+│   │   │   │   └── wildfire.py
+│   │   │   ├── PassiveTotal
+│   │   │   │   ├── passivetotal_analyzer.py
+│   │   │   │   ├── PassiveTotal_Components.json
+│   │   │   │   ├── PassiveTotal_Enrichment.json
+│   │   │   │   ├── PassiveTotal_Host_Pairs.json
+│   │   │   │   ├── PassiveTotal_Malware.json
+│   │   │   │   ├── PassiveTotal_Osint.json
+│   │   │   │   ├── PassiveTotal_Passive_Dns.json
+│   │   │   │   ├── PassiveTotal_Ssl_Certificate_Details.json
+│   │   │   │   ├── PassiveTotal_Ssl_Certificate_History.json
+│   │   │   │   ├── PassiveTotal_Trackers.json
+│   │   │   │   ├── PassiveTotal_Unique_Resolutions.json
+│   │   │   │   ├── PassiveTotal_Whois_Details.json
+│   │   │   │   └── requirements.txt
+│   │   │   ├── Patrowl
+│   │   │   │   ├── assets
+│   │   │   │   │   ├── logo.png
+│   │   │   │   │   ├── patrowl-longreport.png
+│   │   │   │   │   └── patrowl-minireport.png
+│   │   │   │   ├── Patrowl_GetReport.json
+│   │   │   │   ├── patrowl.py
+│   │   │   │   ├── README.md
+│   │   │   │   └── requirements.txt
+│   │   │   ├── PayloadSecurity
+│   │   │   │   ├── payloadsecurity_analyzer.py
+│   │   │   │   ├── PayloadSecurity_File_Analysis.json
+│   │   │   │   ├── PayloadSecurity_Url_Analysis.json
+│   │   │   │   └── requirements.txt
+│   │   │   ├── PhishingInitiative
+│   │   │   │   ├── assets
+│   │   │   │   │   └── phishing-initiative.png
+│   │   │   │   ├── PhishingInitiative_Lookup.json
+│   │   │   │   ├── phishinginitiative.py
+│   │   │   │   ├── PhishingInitiative_Scan.json
+│   │   │   │   ├── README.md
+│   │   │   │   └── requirements.txt
+│   │   │   ├── PhishTank
+│   │   │   │   ├── assets
+│   │   │   │   │   ├── long_report.png
+│   │   │   │   │   └── phish_tank.png
+│   │   │   │   ├── PhishTank_CheckURL.json
+│   │   │   │   ├── phishtank_checkurl.py
+│   │   │   │   ├── README.md
+│   │   │   │   └── requirements.txt
+│   │   │   ├── Proofpoint
+│   │   │   │   ├── ProofPoint_Lookup.json
+│   │   │   │   ├── proofpoint_lookup.py
+│   │   │   │   └── requirements.txt
+│   │   │   ├── Pulsedive
+│   │   │   │   ├── Pulsedive_GetIndicator.json
+│   │   │   │   ├── pulsedive.py
+│   │   │   │   └── requirements.txt
+│   │   │   ├── QrDecode
+│   │   │   │   ├── assets
+│   │   │   │   │   ├── qrdecode-extracted-observables.png
+│   │   │   │   │   ├── qrdecode-stats.png
+│   │   │   │   │   └── qrdecode-summary-report.png
+│   │   │   │   ├── Dockerfile
+│   │   │   │   ├── QrDecode.json
+│   │   │   │   ├── qrdecode.py
+│   │   │   │   ├── README.md
+│   │   │   │   └── requirements.txt
+│   │   │   ├── RecordedFuture
+│   │   │   │   ├── assets
+│   │   │   │   │   ├── LinksReport.jpg
+│   │   │   │   │   ├── RecordedFutureAnalyzerReport.jpg
+│   │   │   │   │   ├── recordedfuture-logo.png
+│   │   │   │   │   └── RiskRulesReport.jpg
+│   │   │   │   ├── README.md
+│   │   │   │   ├── RecordedFuture.json
+│   │   │   │   ├── recordedfuture.py
+│   │   │   │   └── requirements.txt
+│   │   │   ├── RiskIQ
+│   │   │   │   ├── _analyzer.py
+│   │   │   │   ├── requirements.txt
+│   │   │   │   ├── RiskIQ_Articles.json
+│   │   │   │   ├── RiskIQ_Artifacts.json
+│   │   │   │   ├── RiskIQ_Certificates.json
+│   │   │   │   ├── RiskIQ_Components.json
+│   │   │   │   ├── RiskIQ_Cookies.json
+│   │   │   │   ├── RiskIQ_HostpairChildren.json
+│   │   │   │   ├── RiskIQ_HostpairParents.json
+│   │   │   │   ├── RiskIQ_Malware.json
+│   │   │   │   ├── RiskIQ_Projects.json
+│   │   │   │   ├── RiskIQ_Reputation.json
+│   │   │   │   ├── RiskIQ_Resolutions.json
+│   │   │   │   ├── RiskIQ_Services.json
+│   │   │   │   ├── RiskIQ_Subdomains.json
+│   │   │   │   ├── RiskIQ_Summary.json
+│   │   │   │   ├── RiskIQ_Trackers.json
+│   │   │   │   ├── RiskIQ_Whois.json
+│   │   │   │   └── _services.py
+│   │   │   ├── Robtex
+│   │   │   │   ├── requirements.txt
+│   │   │   │   ├── Robtex_Forward_PDNS_Query.json
+│   │   │   │   ├── Robtex_IP_Query.json
+│   │   │   │   ├── robtex.py
+│   │   │   │   └── Robtex_Reverse_PDNS_Query.json
+│   │   │   ├── SecurityTrails
+│   │   │   │   ├── requirements.txt
+│   │   │   │   ├── securitytrails_analyzer.py
+│   │   │   │   ├── SecurityTrails_Passive_DNS.json
+│   │   │   │   ├── securitytrails.py
+│   │   │   │   └── SecurityTrails_Whois.json
+│   │   │   ├── SEKOIAIntelligenceCenter
+│   │   │   │   ├── assets
+│   │   │   │   │   ├── SEKOIAIntelligenceCenter_Context_long.png
+│   │   │   │   │   ├── SEKOIAIntelligenceCenter_Indicators_long.png
+│   │   │   │   │   ├── SEKOIAIntelligenceCenter_Observables_long.png
+│   │   │   │   │   └── sekoia_logo.png
+│   │   │   │   ├── IntelligenceCenter_Context.json
+│   │   │   │   ├── IntelligenceCenter_Indicators.json
+│   │   │   │   ├── IntelligenceCenter_observables.json
+│   │   │   │   ├── README.md
+│   │   │   │   ├── requirements.txt
+│   │   │   │   └── sekoia_intelligence_center_analyzer.py
+│   │   │   ├── SentinelOne
+│   │   │   │   ├── requirements.txt
+│   │   │   │   ├── SentinelOne_DeepVisibility_DNSQuery.json
+│   │   │   │   └── SentinelOne.py
+│   │   │   ├── Shodan
+│   │   │   │   ├── requirements.txt
+│   │   │   │   ├── shodan_analyzer.py
+│   │   │   │   ├── shodan_api.py
+│   │   │   │   ├── Shodan_DNSResolve.json
+│   │   │   │   ├── Shodan_Host_History.json
+│   │   │   │   ├── Shodan_Host.json
+│   │   │   │   ├── Shodan_InfoDomain.json
+│   │   │   │   ├── Shodan_ReverseDNS.json
+│   │   │   │   └── Shodan_Search.json
+│   │   │   ├── SinkDB
+│   │   │   │   ├── requirements.txt
+│   │   │   │   ├── SinkDB.json
+│   │   │   │   └── sinkdb.py
+│   │   │   ├── SoltraEdge
+│   │   │   │   ├── requirements.txt
+│   │   │   │   ├── soltra.py
+│   │   │   │   └── Soltra_search.json
+│   │   │   ├── SophosIntelix
+│   │   │   │   ├── intelix_analyzer.py
+│   │   │   │   ├── requirements.txt
+│   │   │   │   ├── SophosIntelix_GetReport.json
+│   │   │   │   ├── SophosIntelix_Submit_Dynamic.json
+│   │   │   │   └── SophosIntelix_Submit_Static.json
+│   │   │   ├── SpamAssassin
+│   │   │   │   ├── assets
+│   │   │   │   │   ├── SpamAssassin_logo.png
+│   │   │   │   │   ├── SpamAssassin_long.png
+│   │   │   │   │   └── SpamAssassin_short.png
+│   │   │   │   ├── requirements.txt
+│   │   │   │   ├── SpamAssassin.json
+│   │   │   │   └── spamassassin.py
+│   │   │   ├── SpamhausDBL
+│   │   │   │   ├── requirements.txt
+│   │   │   │   ├── SpamhausDBL.json
+│   │   │   │   └── spamhausdbl.py
+│   │   │   ├── Splunk
+│   │   │   │   ├── assets
+│   │   │   │   │   ├── splunk_domain_logo.png
+│   │   │   │   │   ├── splunk_file_logo.png
+│   │   │   │   │   ├── splunk_hash_logo.png
+│   │   │   │   │   ├── splunk_ip_logo.png
+│   │   │   │   │   ├── splunk_mail_logo.png
+│   │   │   │   │   ├── splunk_mail_subject_logo.png
+│   │   │   │   │   ├── splunk_other_logo.png
+│   │   │   │   │   ├── splunk_registry_logo.png
+│   │   │   │   │   ├── Splunk_Search_Domain_FQDN_long.png
+│   │   │   │   │   ├── Splunk_Search_Domain_FQDN_short.png
+│   │   │   │   │   ├── Splunk_Search_File_Filename_long.png
+│   │   │   │   │   ├── Splunk_Search_File_Filename_short.png
+│   │   │   │   │   ├── Splunk_Search_Hash_long.png
+│   │   │   │   │   ├── Splunk_Search_Hash_short.png
+│   │   │   │   │   ├── Splunk_Search_IP_long.png
+│   │   │   │   │   ├── Splunk_Search_IP_short.png
+│   │   │   │   │   ├── Splunk_Search_Mail_Email_long.png
+│   │   │   │   │   ├── Splunk_Search_Mail_Email_short.png
+│   │   │   │   │   ├── Splunk_Search_Mail_Subject_long.png
+│   │   │   │   │   ├── Splunk_Search_Mail_Subject_short.png
+│   │   │   │   │   ├── Splunk_Search_Other_long.png
+│   │   │   │   │   ├── Splunk_Search_Other_short.png
+│   │   │   │   │   ├── Splunk_Search_Registry_long.png
+│   │   │   │   │   ├── Splunk_Search_Registry_short.png
+│   │   │   │   │   ├── Splunk_Search_URL_URI_Path_long.png
+│   │   │   │   │   ├── Splunk_Search_URL_URI_Path_short.png
+│   │   │   │   │   ├── Splunk_Search_User_Agent_long.png
+│   │   │   │   │   ├── Splunk_Search_User_Agent_short.png
+│   │   │   │   │   ├── Splunk_Search_User_long.png
+│   │   │   │   │   ├── Splunk_Search_User_short.png
+│   │   │   │   │   ├── splunk_url_logo.png
+│   │   │   │   │   ├── splunk_user_agent_logo.png
+│   │   │   │   │   └── splunk_user_logo.png
+│   │   │   │   ├── credits.txt
+│   │   │   │   ├── README.md
+│   │   │   │   ├── requirements.txt
+│   │   │   │   ├── splunk.py
+│   │   │   │   ├── Splunk_Search_domain_fqdn.json
+│   │   │   │   ├── Splunk_Search_file_filename.json
+│   │   │   │   ├── Splunk_Search_hash.json
+│   │   │   │   ├── Splunk_Search_ip.json
+│   │   │   │   ├── Splunk_Search_mail_email.json
+│   │   │   │   ├── Splunk_Search_mail_subject.json
+│   │   │   │   ├── Splunk_Search_other.json
+│   │   │   │   ├── Splunk_Search_registry.json
+│   │   │   │   ├── Splunk_Search_url_uri_path.json
+│   │   │   │   ├── Splunk_Search_user_agent.json
+│   │   │   │   └── Splunk_Search_user.json
+│   │   │   ├── StamusNetworks
+│   │   │   │   ├── hostid_analyzer.py
+│   │   │   │   ├── requirements.txt
+│   │   │   │   └── StamusNetworks_IPInfo.json
+│   │   │   ├── StaxxSearch
+│   │   │   │   ├── requirements.txt
+│   │   │   │   ├── staxx-cortex.py
+│   │   │   │   └── StaxxSearch.json
+│   │   │   ├── StopForumSpam
+│   │   │   │   ├── requirements.txt
+│   │   │   │   ├── stopforumspam_analyzer.py
+│   │   │   │   ├── stopforumspam_client.py
+│   │   │   │   └── StopForumSpam.json
+│   │   │   ├── TalosReputation
+│   │   │   │   ├── requirements.txt
+│   │   │   │   ├── TalosReputation.json.disabled
+│   │   │   │   └── TalosReputation.py
+│   │   │   ├── TeamCymruMHR
+│   │   │   │   ├── requirements.txt
+│   │   │   │   ├── TeamCymruMHR.json
+│   │   │   │   └── TeamCymruMHR.py
+│   │   │   ├── TestAnalyzer
+│   │   │   │   ├── DevTools_Echo.json
+│   │   │   │   ├── requirements.txt
+│   │   │   │   ├── TestAnalyzer.json
+│   │   │   │   └── testing.py
+│   │   │   ├── Threatcrowd
+│   │   │   │   ├── requirements.txt
+│   │   │   │   ├── threatcrowd_analyzer.py
+│   │   │   │   └── Threatcrowd.json.disabled
+│   │   │   ├── ThreatGrid
+│   │   │   │   ├── requirements.txt
+│   │   │   │   ├── ThreatGrid.json
+│   │   │   │   └── ThreatGrid.py
+│   │   │   ├── ThreatMiner
+│   │   │   │   ├── requirements.txt
+│   │   │   │   ├── ThreatMiner.json
+│   │   │   │   └── ThreatMiner.py
+│   │   │   ├── ThreatResponse
+│   │   │   │   ├── requirements.txt
+│   │   │   │   ├── ThreatResponse.json
+│   │   │   │   └── ThreatResponse.py
+│   │   │   ├── Thunderstorm
+│   │   │   │   ├── assets
+│   │   │   │   │   ├── thor_thunderstorm_logo.png
+│   │   │   │   │   ├── THOR_Thunderstorm_ScanSample_long.png
+│   │   │   │   │   ├── THOR_Thunderstorm_ScanSample_raw.png
+│   │   │   │   │   └── THOR_Thunderstorm_ScanSample_short.png
+│   │   │   │   ├── README.md
+│   │   │   │   ├── requirements.txt
+│   │   │   │   ├── thunderstorm.py
+│   │   │   │   └── Thunderstorm_ScanSample.json
+│   │   │   ├── TorBlutmagie
+│   │   │   │   ├── requirements.txt
+│   │   │   │   ├── tor_blutmagie_analyzer.py
+│   │   │   │   ├── TorBlutmagie.json
+│   │   │   │   └── tor_blutmagie.py
+│   │   │   ├── TorProject
+│   │   │   │   ├── requirements.txt
+│   │   │   │   ├── tor_project_analyzer.py
+│   │   │   │   ├── TorProject.json
+│   │   │   │   └── tor_project.py
+│   │   │   ├── Triage
+│   │   │   │   ├── assets
+│   │   │   │   │   ├── recorded_future_triage_logo.png
+│   │   │   │   │   ├── triage_cortex_settings.png
+│   │   │   │   │   ├── triage_long_report.png
+│   │   │   │   │   └── triage_verdict.png
+│   │   │   │   ├── README.md
+│   │   │   │   ├── requirements.txt
+│   │   │   │   ├── triage_analyzer.py
+│   │   │   │   └── Triage.json
+│   │   │   ├── Umbrella
+│   │   │   │   ├── requirements.txt
+│   │   │   │   ├── Umbrella.py
+│   │   │   │   └── Umbrella_Report.json
+│   │   │   ├── UnshortenLink
+│   │   │   │   ├── requirements.txt
+│   │   │   │   ├── UnshortenLink.json
+│   │   │   │   └── unshortenlink.py
+│   │   │   ├── URLhaus
+│   │   │   │   ├── requirements.txt
+│   │   │   │   ├── URLhaus_analyzer.py
+│   │   │   │   ├── URLhaus_client.py
+│   │   │   │   └── URLhaus.json
+│   │   │   ├── Urlscan.io
+│   │   │   │   ├── requirements.txt
+│   │   │   │   ├── urlscan_analyzer.py
+│   │   │   │   ├── urlscan.py
+│   │   │   │   ├── Urlscan_Scan.json
+│   │   │   │   └── Urlscan_Search.json
+│   │   │   ├── Valhalla
+│   │   │   │   ├── assets
+│   │   │   │   │   ├── Valhalla_GetMatches_long.png
+│   │   │   │   │   ├── Valhalla_GetMatches_short.png
+│   │   │   │   │   └── Valhalla_logo.png
+│   │   │   │   ├── README.md
+│   │   │   │   ├── requirements.txt
+│   │   │   │   ├── Valhalla_GetMatches.json
+│   │   │   │   └── valhalla.py
+│   │   │   ├── ValidateObservable
+│   │   │   │   ├── README.md
+│   │   │   │   ├── requirements.txt
+│   │   │   │   ├── ValidateObservable.json
+│   │   │   │   └── ValidateObservable.py
+│   │   │   ├── Verifalia
+│   │   │   │   ├── requirements.txt
+│   │   │   │   ├── Verifalia.json
+│   │   │   │   └── Verifalia.py
+│   │   │   ├── Virusshare
+│   │   │   │   ├── assets
+│   │   │   │   │   ├── long_report.png
+│   │   │   │   │   └── virusshare.png
+│   │   │   │   ├── getHashes.sh
+│   │   │   │   ├── README.md
+│   │   │   │   ├── requirements.txt
+│   │   │   │   ├── Virusshare.json
+│   │   │   │   └── virusshare.py
+│   │   │   ├── VirusTotal
+│   │   │   │   ├── assets
+│   │   │   │   │   ├── virustotal-extracted-observables.png
+│   │   │   │   │   ├── virustotal-ids-sandbox-urls.png
+│   │   │   │   │   ├── virustotal-logo.png
+│   │   │   │   │   ├── virustotal-scan.png
+│   │   │   │   │   ├── virustotal-summary-report.png
+│   │   │   │   │   └── virustotal-yara.png
+│   │   │   │   ├── Dockerfile
+│   │   │   │   ├── README.md
+│   │   │   │   ├── requirements.txt
+│   │   │   │   ├── VirusTotal_DownloadSample.json
+│   │   │   │   ├── VirusTotal_GetReport.json
+│   │   │   │   ├── virustotal.py
+│   │   │   │   ├── VirusTotal_Rescan.json
+│   │   │   │   └── VirusTotal_Scan.json
+│   │   │   ├── VMRay
+│   │   │   │   ├── requirements.txt
+│   │   │   │   ├── vmrayclient.py
+│   │   │   │   ├── VMRay.json
+│   │   │   │   └── vmray.py
+│   │   │   ├── Vulners
+│   │   │   │   ├── assets
+│   │   │   │   │   ├── Cortex_settings.PNG
+│   │   │   │   │   ├── cve_long_template.gif
+│   │   │   │   │   ├── cve_short_template.png
+│   │   │   │   │   ├── ioc_long_template.png
+│   │   │   │   │   ├── ioc_short_template.png
+│   │   │   │   │   ├── ioc_with_malware_family.PNG
+│   │   │   │   │   ├── theHive_add_cve.png
+│   │   │   │   │   ├── vulners_api.png
+│   │   │   │   │   └── vulners_logo.png
+│   │   │   │   ├── README.md
+│   │   │   │   ├── requirements.txt
+│   │   │   │   ├── vulners_analyzer.py
+│   │   │   │   ├── Vulners_CVE.json
+│   │   │   │   └── Vulners_IOC.json
+│   │   │   ├── Watcher
+│   │   │   │   ├── README.md
+│   │   │   │   ├── requirements.txt
+│   │   │   │   ├── Watcher_CheckDomain.json
+│   │   │   │   └── watcher.py
+│   │   │   ├── WOT
+│   │   │   │   ├── requirements.txt
+│   │   │   │   ├── WOT_lookup.json
+│   │   │   │   └── WOT_lookup.py
+│   │   │   ├── Yara
+│   │   │   │   ├── Dockerfile
+│   │   │   │   ├── requirements.txt
+│   │   │   │   ├── yara_analyzer.py
+│   │   │   │   └── Yara.json
+│   │   │   ├── Yeti
+│   │   │   │   ├── Dockerfile
+│   │   │   │   ├── requirements.txt
+│   │   │   │   ├── Yeti.json
+│   │   │   │   └── yeti.py
+│   │   │   └── Zscaler
+│   │   │       ├── assets
+│   │   │       │   ├── zscaler_logo.png
+│   │   │       │   ├── zscaler_url_lookup_long.png
+│   │   │       │   └── zscaler_url_lookup_short.png
+│   │   │       ├── README.md
+│   │   │       ├── requirements.txt
+│   │   │       ├── Zscaler.json
+│   │   │       └── zscaler.py
+│   │   ├── AUTHORS
+│   │   ├── CHANGELOG.md
+│   │   ├── code_of_conduct.md
+│   │   ├── COMPONENTS
+│   │   ├── docs
+│   │   │   ├── admin_guides
+│   │   │   │   ├── how-to-upgrade-analyzers-responders.md
+│   │   │   │   └── manage-private-custom-analyzers-responders.md
+│   │   │   ├── dev_guides
+│   │   │   │   ├── analyzers_definition.md
+│   │   │   │   ├── dockerize-your-custom-analyzers-responders.md
+│   │   │   │   ├── how-to-create-an-analyzer.md
+│   │   │   │   └── how-to-test-an-analyzer.md
+│   │   │   └── images
+│   │   │       ├── cortex-logo.png
+│   │   │       ├── cortex-main.png
+│   │   │       ├── cortex-refresh-analyzers.png
+│   │   │       ├── cortex-thehive-analyzers-upgrade-notification.png
+│   │   │       ├── cortex-ui.png
+│   │   │       ├── enable-analyzer.png
+│   │   │       ├── obsolete-analyzer-refresh.png
+│   │   │       ├── refresh-responders.png
+│   │   │       ├── sc-long-vt.jpg
+│   │   │       ├── sc-short-vt.png
+│   │   │       ├── thehive-cortex-obsolete-drawer.png
+│   │   │       └── update-analyzers-template.png
+│   │   ├── images
+│   │   │   ├── cortex-main.png
+│   │   │   └── cortex-ui.png
+│   │   ├── LICENSE
+│   │   ├── README.md
+│   │   ├── responders
+│   │   │   ├── AMPforEndpoints
+│   │   │   │   ├── AMPforEndpoints_IsolationStart.json
+│   │   │   │   ├── AMPforEndpoints_IsolationStop.json
+│   │   │   │   ├── AMPforEndpoints_MoveGUID.json
+│   │   │   │   ├── AMPforEndpoints.py
+│   │   │   │   ├── AMPforEndpoints_SCDAdd.json
+│   │   │   │   ├── AMPforEndpoints_SCDRemove.json
+│   │   │   │   └── requirements.txt
+│   │   │   ├── AWSLambda
+│   │   │   │   ├── assets
+│   │   │   │   │   └── awslambda.png
+│   │   │   │   ├── AWSInvokeLambda.json
+│   │   │   │   ├── AWSInvokeLambda.py
+│   │   │   │   ├── README.md
+│   │   │   │   └── requirements.txt
+│   │   │   ├── AWX
+│   │   │   │   ├── awx.json
+│   │   │   │   ├── awx.py
+│   │   │   │   └── requirements.txt
+│   │   │   ├── BinalyzeAIR
+│   │   │   │   ├── assets
+│   │   │   │   │   └── binalyze-logo.png
+│   │   │   │   ├── binalyze_air_acquisition.json
+│   │   │   │   ├── binalyze_air_isolation.json
+│   │   │   │   ├── binalyze.py
+│   │   │   │   ├── README.md
+│   │   │   │   └── requirements.txt
+│   │   │   ├── CheckPoint
+│   │   │   │   ├── CheckPoint_Gaia_lock.json
+│   │   │   │   ├── CheckPoint_Gaia_unlock.json
+│   │   │   │   ├── checkpoint.py
+│   │   │   │   ├── README.md
+│   │   │   │   └── requirements.txt
+│   │   │   ├── Cloudflare_IP_Blocker
+│   │   │   │   ├── CloudflareIPBlocker.json
+│   │   │   │   ├── CloudflareIPBlocker.py
+│   │   │   │   └── requirements.txt
+│   │   │   ├── CrowdstrikeFalcon
+│   │   │   │   ├── assets
+│   │   │   │   │   ├── addioc-cfg-ioc.png
+│   │   │   │   │   ├── contain-cfg-hosts.png
+│   │   │   │   │   ├── cortex-responders-hosts.png
+│   │   │   │   │   ├── cortex-responders-ioc.png
+│   │   │   │   │   ├── responder-report-1-ioc.png
+│   │   │   │   │   ├── responder-report-2-ioc.png
+│   │   │   │   │   ├── responder-report-hosts.png
+│   │   │   │   │   ├── responder-report-sync.png
+│   │   │   │   │   └── sync-cfg.png
+│   │   │   │   ├── CrowdStrikeFalcon_AddIOC.json
+│   │   │   │   ├── CrowdstrikeFalcon_containHost.json
+│   │   │   │   ├── CrowdstrikeFalcon_hideHost.json
+│   │   │   │   ├── CrowdstrikeFalconHosts.py
+│   │   │   │   ├── CrowdstrikeFalconIOC.py
+│   │   │   │   ├── CrowdstrikeFalcon_liftContainmentHost.json
+│   │   │   │   ├── CrowdStrikeFalcon_removeIOC.json
+│   │   │   │   ├── CrowdstrikeFalcon_suppressDetections.json
+│   │   │   │   ├── CrowdStrikeFalcon_Sync.json
+│   │   │   │   ├── CrowdstrikeFalconSync.py
+│   │   │   │   ├── CrowdstrikeFalcon_unhideHost.json
+│   │   │   │   ├── CrowdstrikeFalcon_unsuppressDetection.json
+│   │   │   │   ├── README.md
+│   │   │   │   └── requirements.txt
+│   │   │   ├── DNS-RPZ
+│   │   │   │   ├── DNS-RPZ.json
+│   │   │   │   ├── dns-rpz.py
+│   │   │   │   └── requirements.txt
+│   │   │   ├── DomainToolsIris_AddRiskyDNSTag
+│   │   │   │   ├── DomainToolsIris_AddRiskyDNSTag.json
+│   │   │   │   ├── domaintoolsiris_responder.py
+│   │   │   │   └── requirements.txt
+│   │   │   ├── DomainToolsIris_CheckMaliciousTags
+│   │   │   │   ├── DomainToolsIris_CheckMaliciousTags.json
+│   │   │   │   ├── domaintoolsiris_responder.py
+│   │   │   │   └── requirements.txt
+│   │   │   ├── Duo_Security
+│   │   │   │   ├── assets
+│   │   │   │   │   ├── AddObservableType.jpg
+│   │   │   │   │   ├── Demo_Lock-Unlock_DuoUser.gif
+│   │   │   │   │   ├── ResponderConfig.jpg
+│   │   │   │   │   └── Responders.jpg
+│   │   │   │   ├── DuoBypassUserAccount.json
+│   │   │   │   ├── duoBypassUserAccount.py
+│   │   │   │   ├── DuoLockUserAccount.json
+│   │   │   │   ├── duoLockUserAccount.py
+│   │   │   │   ├── DuoUnlockUserAccount.json
+│   │   │   │   ├── duoUnlockUserAccount.py
+│   │   │   │   ├── README.md
+│   │   │   │   └── requirements.txt
+│   │   │   ├── EclecticIQIndicator
+│   │   │   │   ├── EclecticIQIndicator.json
+│   │   │   │   ├── EclecticIQIndicator.py
+│   │   │   │   └── requirements.txt
+│   │   │   ├── FalconCustomIOC
+│   │   │   │   ├── FalconCustomIOC.json
+│   │   │   │   ├── FalconCustomIOC.py
+│   │   │   │   ├── FalconCustomIOCv2.json
+│   │   │   │   ├── FalconCustomIOCv2.py
+│   │   │   │   └── requirements.txt
+│   │   │   ├── Gatewatcher_CTI_Identity
+│   │   │   │   ├── assets
+│   │   │   │   │   ├── cortex_responder_conf.png
+│   │   │   │   │   └── responder_conf_var.png
+│   │   │   │   ├── Gatewatcher_CTI_Identity.json
+│   │   │   │   ├── Gatewatcher_CTI_Identity.py
+│   │   │   │   ├── README.md
+│   │   │   │   ├── requirements.txt
+│   │   │   │   └── script
+│   │   │   │       └── script.py
+│   │   │   ├── Gmail
+│   │   │   │   ├── Dockerfile
+│   │   │   │   ├── Gmail_BlockDomain.json
+│   │   │   │   ├── Gmail_BlockSender.json
+│   │   │   │   ├── Gmail_DeleteMessage.json
+│   │   │   │   ├── Gmail.py
+│   │   │   │   ├── Gmail_UnblockDomain.json
+│   │   │   │   ├── Gmail_UnblockSender.json
+│   │   │   │   ├── README.md
+│   │   │   │   └── requirements.txt
+│   │   │   ├── HarfangLab
+│   │   │   │   ├── assets
+│   │   │   │   │   └── HarfangLab_logo.png
+│   │   │   │   ├── HarfangLab_DumpProcess.json
+│   │   │   │   ├── HarfangLab_GetArtifactAll.json
+│   │   │   │   ├── HarfangLab_GetArtifactEvtx.json
+│   │   │   │   ├── HarfangLab_GetArtifactFilesystem.json
+│   │   │   │   ├── HarfangLab_GetArtifactHives.json
+│   │   │   │   ├── HarfangLab_GetArtifactLogs.json
+│   │   │   │   ├── HarfangLab_GetArtifactMFT.json
+│   │   │   │   ├── HarfangLab_GetArtifactPrefetch.json
+│   │   │   │   ├── HarfangLab_GetArtifactRamdump.json
+│   │   │   │   ├── HarfangLab_GetArtifactUSN.json
+│   │   │   │   ├── HarfangLab_GetBinary.json
+│   │   │   │   ├── HarfangLab_GetDrivers.json
+│   │   │   │   ├── HarfangLab_GetNetworkShares.json
+│   │   │   │   ├── HarfangLab_GetPersistence.json
+│   │   │   │   ├── HarfangLab_GetPipes.json
+│   │   │   │   ├── HarfangLab_GetPrefetches.json
+│   │   │   │   ├── HarfangLab_GetProcesses.json
+│   │   │   │   ├── HarfangLab_GetRunKeys.json
+│   │   │   │   ├── HarfangLab_GetScheduledTasks.json
+│   │   │   │   ├── HarfangLab_GetServices.json
+│   │   │   │   ├── HarfangLab_GetSessions.json
+│   │   │   │   ├── HarfangLab_GetStartupFiles.json
+│   │   │   │   ├── HarfangLab_GetWMI.json
+│   │   │   │   ├── HarfangLab_Isolate.json
+│   │   │   │   ├── HarfangLab_KillProcess.json
+│   │   │   │   ├── HarfangLab.py
+│   │   │   │   ├── HarfangLab_SearchDestinationIP.json
+│   │   │   │   ├── HarfangLab_SearchDriverByFileName.json
+│   │   │   │   ├── HarfangLab_SearchDriverByHash.json
+│   │   │   │   ├── HarfangLab_SearchHash.json
+│   │   │   │   ├── HarfangLab_SearchSourceIP.json
+│   │   │   │   ├── HarfangLab_Unisolate.json
+│   │   │   │   ├── README.md
+│   │   │   │   └── requirements.txt
+│   │   │   ├── JAMFProtect
+│   │   │   │   ├── assets
+│   │   │   │   │   └── jamfprotect.png
+│   │   │   │   ├── JAMFProtect_addHashtoPreventList.json
+│   │   │   │   ├── JAMFProtect_IOC.py
+│   │   │   │   ├── JAMFProtect_removeHashfromPreventList.json
+│   │   │   │   ├── README.md
+│   │   │   │   └── requirements.txt
+│   │   │   ├── Jupyter_Responder
+│   │   │   │   ├── assets
+│   │   │   │   │   ├── screenshot_cortex_responder_settings_example.png
+│   │   │   │   │   ├── screenshot_jupyter_operations.png
+│   │   │   │   │   └── screenshot_jupyter_parameters.png
+│   │   │   │   ├── Dockerfile
+│   │   │   │   ├── jupyter.py
+│   │   │   │   ├── Jupyter_Run_Notebook_Responder.json
+│   │   │   │   ├── papermill_iorw.patch
+│   │   │   │   ├── README.md
+│   │   │   │   └── requirements.txt
+│   │   │   ├── KnowBe4
+│   │   │   │   ├── KnowBe4.json
+│   │   │   │   ├── KnowBe4.py
+│   │   │   │   └── requirements.txt
+│   │   │   ├── Mailer
+│   │   │   │   ├── Mailer.json
+│   │   │   │   ├── mailer.py
+│   │   │   │   └── requirements.txt
+│   │   │   ├── MailIncidentStatus
+│   │   │   │   ├── Dockerfile
+│   │   │   │   ├── MailIncidentStatus.json
+│   │   │   │   ├── mailincidentstatus.py
+│   │   │   │   └── requirements.txt
+│   │   │   ├── Minemeld
+│   │   │   │   ├── assets
+│   │   │   │   │   └── MM-logo.png
+│   │   │   │   ├── minemeld.json
+│   │   │   │   ├── minemeld.py
+│   │   │   │   ├── README.md
+│   │   │   │   └── requirements.txt
+│   │   │   ├── MSDefenderEndpoints
+│   │   │   │   ├── assets
+│   │   │   │   │   └── thehive_integration.jpg
+│   │   │   │   ├── MSDefenderEndpoints_AutoInvestigation.json
+│   │   │   │   ├── MSDefenderEndpoints_Isolate.json
+│   │   │   │   ├── MSDefenderEndpoints_PushIOCAlert.json
+│   │   │   │   ├── MSDefenderEndpoints_PushIOCBlock.json
+│   │   │   │   ├── MSDefenderEndpoints.py
+│   │   │   │   ├── MSDefenderEndpoints_RestrictAppExecution.json
+│   │   │   │   ├── MSDefenderEndpoints_Unisolate.json
+│   │   │   │   ├── MSDefenderEndpoints_UnRestrictAppExecution.json
+│   │   │   │   ├── MSDefenderEndpoints_VirusScan.json
+│   │   │   │   ├── README.md
+│   │   │   │   └── requirements.txt
+│   │   │   ├── MSDefenderOffice365
+│   │   │   │   ├── assets
+│   │   │   │   │   ├── MicrosoftDefenderForOffice365_logo.png
+│   │   │   │   │   └── MSDefenderOffice365_Block.png
+│   │   │   │   ├── Dockerfile
+│   │   │   │   ├── install_deps.ps1
+│   │   │   │   ├── MSDefenderOffice365_block.json
+│   │   │   │   ├── MSDefenderOffice365_unblock.json
+│   │   │   │   ├── ms_defender_office.py
+│   │   │   │   ├── README.md
+│   │   │   │   ├── requirements.txt
+│   │   │   │   └── scripts
+│   │   │   │       ├── block_sender.ps1
+│   │   │   │       └── unblock_sender.ps1
+│   │   │   ├── MSEntraID
+│   │   │   │   ├── MSEntraID_disableUser.json
+│   │   │   │   ├── MSEntraID_enableUser.json
+│   │   │   │   ├── MSEntraID_ForcePasswordReset.json
+│   │   │   │   ├── MSEntraID_ForcePasswordResetWithMFA.json
+│   │   │   │   ├── MSEntraID.py
+│   │   │   │   ├── MSEntraID_revokeSignInSessions.json
+│   │   │   │   ├── README.md
+│   │   │   │   └── requirements.txt
+│   │   │   ├── n8n
+│   │   │   │   ├── n8n.json
+│   │   │   │   ├── n8n.py
+│   │   │   │   ├── README.md
+│   │   │   │   └── requirements.txt
+│   │   │   ├── Netcraft
+│   │   │   │   ├── Netcraft.py
+│   │   │   │   ├── NetcraftTakedown.json
+│   │   │   │   ├── README.md
+│   │   │   │   └── requirements.txt
+│   │   │   ├── PaloAltoCortexXDR
+│   │   │   │   ├── assets
+│   │   │   │   │   ├── cortex_logo.png
+│   │   │   │   │   └── PaloAltoCortexXDR_isolate.png
+│   │   │   │   ├── cortex_xdr.py
+│   │   │   │   ├── PaloAltoCortexXDR_isolate.json
+│   │   │   │   ├── PaloAltoCortexXDR_scan.json
+│   │   │   │   ├── PaloAltoCortexXDR_unisolate.json
+│   │   │   │   ├── README.md
+│   │   │   │   └── requirements.txt
+│   │   │   ├── PaloAltoNGFW
+│   │   │   │   ├── assets
+│   │   │   │   │   ├── AddObservableType.jpg
+│   │   │   │   │   └── Responders.jpg
+│   │   │   │   ├── block_external_domain.py
+│   │   │   │   ├── block_external_ip.py
+│   │   │   │   ├── block_external_user.py
+│   │   │   │   ├── block_internal_domain.py
+│   │   │   │   ├── block_internal_ip.py
+│   │   │   │   ├── block_internal_user.py
+│   │   │   │   ├── block_port_for_external_communication.py
+│   │   │   │   ├── block_port_for_internal_communication.py
+│   │   │   │   ├── PaloAltoNGFW_block_external_domain.json
+│   │   │   │   ├── PaloAltoNGFW_block_external_IP_address.json
+│   │   │   │   ├── PaloAltoNGFW_block_external_user.json
+│   │   │   │   ├── PaloAltoNGFW_block_internal_domain.json
+│   │   │   │   ├── PaloAltoNGFW_block_internal_IP_address.json
+│   │   │   │   ├── PaloAltoNGFW_block_internal_user.json
+│   │   │   │   ├── PaloAltoNGFW_block_port_for_external_communication.json
+│   │   │   │   ├── PaloAltoNGFW_block_port_for_internal_communication.json
+│   │   │   │   ├── PaloAltoNGFW_unblock_external_domain.json
+│   │   │   │   ├── PaloAltoNGFW_unblock_external_IP_address.json
+│   │   │   │   ├── PaloAltoNGFW_unblock_external_user.json
+│   │   │   │   ├── PaloAltoNGFW_unblock_internal_domain.json
+│   │   │   │   ├── PaloAltoNGFW_unblock_internal_IP_address.json
+│   │   │   │   ├── PaloAltoNGFW_unblock_internal_user.json
+│   │   │   │   ├── PaloAltoNGFW_unblock_port_for_external_communication.json
+│   │   │   │   ├── PaloAltoNGFW_unblock_port_for_internal_communication.json
+│   │   │   │   ├── README.md
+│   │   │   │   ├── requirements.txt
+│   │   │   │   ├── unblock_external_domain.py
+│   │   │   │   ├── unblock_external_ip.py
+│   │   │   │   ├── unblock_external_user.py
+│   │   │   │   ├── unblock_internal_domain.py
+│   │   │   │   ├── unblock_internal_ip.py
+│   │   │   │   ├── unblock_internal_user.py
+│   │   │   │   ├── unblock_port_for_external_communication.py
+│   │   │   │   └── unblock_port_for_internal_communication.py
+│   │   │   ├── PaloAltoWildfire
+│   │   │   │   ├── PaloAltoWildfire.py
+│   │   │   │   ├── PaloAltoWildfire_URL_submission.json
+│   │   │   │   ├── README.md
+│   │   │   │   └── requirements.txt
+│   │   │   ├── QRadarAutoClose
+│   │   │   │   ├── QRadarAutoClose.json
+│   │   │   │   ├── QRadarAutoClose.py
+│   │   │   │   ├── README.md
+│   │   │   │   └── requirements.txt
+│   │   │   ├── Redmine
+│   │   │   │   ├── redmine_client.py
+│   │   │   │   ├── Redmine_Issue.json
+│   │   │   │   ├── redmine.py
+│   │   │   │   └── requirements.txt
+│   │   │   ├── RiskIQ
+│   │   │   │   ├── requirements.txt
+│   │   │   │   ├── _responder.py
+│   │   │   │   ├── RiskIQ_PushArtifactToProject.json
+│   │   │   │   └── _services.py
+│   │   │   ├── RT4
+│   │   │   │   ├── config.py
+│   │   │   │   ├── __init__.py
+│   │   │   │   ├── README.md
+│   │   │   │   ├── requirements.txt
+│   │   │   │   ├── rt4.json
+│   │   │   │   ├── rt4.py
+│   │   │   │   ├── template.py
+│   │   │   │   └── templates
+│   │   │   │       ├── malware.j2
+│   │   │   │       └── phishing_generic.j2
+│   │   │   ├── SendGrid
+│   │   │   │   ├── requirements.txt
+│   │   │   │   ├── SendGrid.json
+│   │   │   │   └── SendGrid.py
+│   │   │   ├── SentinelOne
+│   │   │   │   ├── requirements.txt
+│   │   │   │   ├── SentinelOne_HashBlacklister.json
+│   │   │   │   └── SentinelOne.py
+│   │   │   ├── Shuffle
+│   │   │   │   ├── requirements.txt
+│   │   │   │   ├── shuffle.json
+│   │   │   │   └── shuffle.py
+│   │   │   ├── Slack
+│   │   │   │   ├── assets
+│   │   │   │   │   ├── slack-history.png
+│   │   │   │   │   ├── slack-logo.png
+│   │   │   │   │   ├── thehive-slacksync-1.png
+│   │   │   │   │   └── thehive-slacksync-2.png
+│   │   │   │   ├── image.png
+│   │   │   │   ├── README.md
+│   │   │   │   ├── requirements.txt
+│   │   │   │   ├── Slack_CreateChannel.json
+│   │   │   │   ├── slack.py
+│   │   │   │   └── Slack_SyncChannel.json
+│   │   │   ├── Telegram
+│   │   │   │   ├── README.md
+│   │   │   │   ├── requirements.txt
+│   │   │   │   ├── Telegram.json
+│   │   │   │   └── telegram.py
+│   │   │   ├── Test
+│   │   │   │   ├── DevTools_Echo.json
+│   │   │   │   ├── requirements.txt
+│   │   │   │   ├── test.json
+│   │   │   │   └── test.py
+│   │   │   ├── UmbrellaBlacklister
+│   │   │   │   ├── requirements.txt
+│   │   │   │   ├── UmbrellaBlacklister.json
+│   │   │   │   └── UmbrellaBlacklister.py
+│   │   │   ├── Velociraptor
+│   │   │   │   ├── Dockerfile
+│   │   │   │   ├── README.md
+│   │   │   │   ├── requirements.txt
+│   │   │   │   ├── velociraptor_flow.json
+│   │   │   │   └── velociraptor_flow.py
+│   │   │   ├── VirustotalDownloader
+│   │   │   │   ├── Dockerfile
+│   │   │   │   ├── README.md
+│   │   │   │   ├── requirements.txt
+│   │   │   │   ├── VirustotalDownloader.json
+│   │   │   │   └── VirustotalDownloader.py
+│   │   │   ├── Watcher
+│   │   │   │   ├── README.md
+│   │   │   │   ├── requirements.txt
+│   │   │   │   ├── Watcher_AddDomain.json
+│   │   │   │   ├── watcher.py
+│   │   │   │   └── Watcher_RemoveDomain.json
+│   │   │   ├── Wazuh
+│   │   │   │   ├── requirements.txt
+│   │   │   │   ├── wazuh.json
+│   │   │   │   └── wazuh.py
+│   │   │   ├── ZEROFOX_Close_alert
+│   │   │   │   ├── requirements.txt
+│   │   │   │   ├── ZEROFOX_Close_alert.json
+│   │   │   │   └── ZEROFOX_Close_alert.py
+│   │   │   └── ZEROFOX_Takedown_request
+│   │   │       ├── requirements.txt
+│   │   │       ├── ZEROFOX_Takedown_request.json
+│   │   │       └── ZEROFOX_Takedown_request.py
+│   │   ├── SECURITY.md
+│   │   ├── thehive-templates
+│   │   │   ├── Abuse_Finder_3_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── AbuseIPDB_1_1
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── AIL_OnionLookup_1_0
+│   │   │   │   └── long.html
+│   │   │   ├── AnyRun_Sandbox_Analysis_1_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── Axur_1_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── BackscatterIO_Enrichment_1_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── BackscatterIO_GetObservations_1_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── BitcoinAbuse_1_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── Bluecoat_Categorization_1_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── C1fApp_1_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── Capa_1_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── Censys_2_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── CERTatPassiveDNS_2_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── ChainAbuse_1_1
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── CheckPhish_1_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── CheckPhish_Submit_1_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── CIRCLHashlookup_1_1
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── CIRCLPassiveDNS_2_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── CIRCLPassiveSSL_2_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── CIRCLVulnerabilityLookup_1_0
+│   │   │   │   └── long.html
+│   │   │   ├── CISMCAP_1_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── ClamAV_1_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── Cluster25_1_0
+│   │   │   │   └── long.html
+│   │   │   ├── ClusterHawk_1_0
+│   │   │   │   └── long.html
+│   │   │   ├── Crowdsec_1_1
+│   │   │   │   └── long.html
+│   │   │   ├── CrowdstrikeFalcon_getDeviceAlerts_1_0
+│   │   │   │   └── long.html
+│   │   │   ├── CrowdstrikeFalcon_getDeviceDetails_1_0
+│   │   │   │   └── long.html
+│   │   │   ├── CrowdstrikeFalcon_GetDeviceVulnerabilities_1_0
+│   │   │   │   └── long.html
+│   │   │   ├── CrowdstrikeFalcon_Sandbox_Android_1_0
+│   │   │   │   └── long.html
+│   │   │   ├── CrowdstrikeFalcon_Sandbox_Linux_1_0
+│   │   │   │   └── long.html
+│   │   │   ├── CrowdstrikeFalcon_Sandbox_MacOS_1_0
+│   │   │   │   └── long.html
+│   │   │   ├── CrowdstrikeFalcon_Sandbox_Win10_1_0
+│   │   │   │   └── long.html
+│   │   │   ├── CrowdstrikeFalcon_Sandbox_Win11_1_0
+│   │   │   │   └── long.html
+│   │   │   ├── CrowdstrikeFalcon_Sandbox_Win7_1_0
+│   │   │   │   └── long.html
+│   │   │   ├── CrowdstrikeFalcon_Sandbox_Win7_64_1_0
+│   │   │   │   └── long.html
+│   │   │   ├── Crt_sh_Transparency_Logs_1_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── CuckooSandbox_File_Analysis_Inet_1_2
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── CuckooSandbox_Url_Analysis_1_2
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── CyberChef_FromBase64_1_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── CyberChef_FromCharCode_1_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── CyberChef_FromHex_1_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── CyberCrime-Tracker_1_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── Cyberprotect_ThreatScore_3_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── Cylance_1_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── Diario_GetReport_1_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── Diario_Scan_1_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── DNSDB_DomainName_2_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── DNSDB_IPHistory_2_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── DNSDB_NameHistory_2_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── DNSdumpster_report_1_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── DNS_Lookingglass_1_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── DNSSinkhole_1_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── DomainMailSPFDMARC_1_1
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── DomainTools_HostingHistory_2_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── DomainToolsIris_Investigate_1_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── DomainToolsIris_Pivot_1_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── DomainTools_Reputation_2_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── DomainTools_ReverseIP_2_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── DomainTools_ReverseIPWhois_2_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── DomainTools_ReverseNameServer_2_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── DomainTools_ReverseWhois_2_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── DomainTools_Risk_2_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── DomainTools_WhoisHistory_2_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── DomainTools_WhoisLookup_2_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── DomainTools_WhoisLookupUnparsed_2_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── DShield_lookup_1_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── EchoTrail_1_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── EclecticIQ_SearchObservable_1_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── Elasticsearch_Analysis_1_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── EmailRep_1_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── EmergingThreats_DomainInfo_1_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── EmergingThreats_IPInfo_1_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── EmergingThreats_MalwareInfo_1_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── EmlParser_2_1
+│   │   │   │   └── long.html
+│   │   │   ├── FalconSandbox_1_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── File_Info_2_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── FileInfo_8_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── FireEyeiSight_Lookup_1_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── FireHOLBlocklists_2_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── ForcepointWebsensePing_1_0
+│   │   │   │   └── short.html
+│   │   │   ├── Fortiguard_URLCategory_2_1
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── Gatewatcher_CTI_2_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── GoogleDNS_resolve_1_0_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── GoogleSafebrowsing_2_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── GoogleVisionAPI_WebDetection_1_0_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── GreyNoise_3_1
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── Hashdd_Detail_2_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── Hashdd_Status_2_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── HIBP_Query_2_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── HippoMore_2_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── Hipposcore_2_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── Hunterio_DomainSearch_1_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── HybridAnalysis_GetReport_1_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── IBMXForce_Lookup_1_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── Inoitsu_1_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── IntezerCommunity_1_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── Investigate_Categorization_1_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── Investigate_Sample_1_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── IP-API_1_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── IP-API_1_1
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── IPinfo_Details_1_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── IPinfo_Hosted_Domains_1_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── IPVoid_1_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── IVRE_1_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── JA4_FoxIO_1_0
+│   │   │   │   └── long.html
+│   │   │   ├── JoeSandbox_File_Analysis_Inet_3_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── JoeSandbox_File_Analysis_Noinet_3_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── JoeSandbox_Url_Analysis_2_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── Jupyter_Run_Notebook_Analyzer_1_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── KasperskyTIP_1_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── LdapQuery_1_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── Ldap_Query_3_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── Lookyloo_Screenshot_1_0
+│   │   │   │   └── long.html
+│   │   │   ├── LupovisProwl_GetIPReputation_1_1
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── Malpedia_1_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── Maltiverse_Report_1_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── MalwareBazaar_1_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── MalwareClustering_1_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── Malwares_GetReport_1_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── Malwares_Scan_1_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── MaxMind_GeoIP_4_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── MetaDefenderCloud_GetReport_1_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── MetaDefenderCloud_Reputation_1_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── MetaDefenderCloud_Scan_1_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── MetaDefenderCore_GetReport_1_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── MetaDefenderCore_Scan_1_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── MISP_2_1
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── MISPWarningLists_2_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── Mnemonic_pDNS_Closed_3_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── Mnemonic_pDNS_Public_3_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── MSEntraID_GetDirectoryAuditLogs_1_0
+│   │   │   │   └── long.html
+│   │   │   ├── MSEntraID_GetManagedDevicesInfo_1_0
+│   │   │   │   └── long.html
+│   │   │   ├── MSEntraID_GetSignIns_1_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── MSEntraID_GetUserInfo_1_0
+│   │   │   │   └── long.html
+│   │   │   ├── Msg_Parser_3_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── NERD_1_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── Nessus_2_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── NSRL_Lookup_1_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── OktaUserLookup_1_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── ONYPHE_ASM_1_1
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── ONYPHE_Ctiscan_1_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── ONYPHE_OnDemandScan_1_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── ONYPHE_Search_1_1
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── ONYPHE_Summary_API_1_1
+│   │   │   │   └── long.html
+│   │   │   ├── ONYPHE_Vulnscan_1_1
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── OpenCTI_SearchExactObservable_2_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── OpenCTI_SearchObservables_2_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── OTXQuery_2_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── PaloAltoWildFire_1_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── PassiveTotal_Components_2_0
+│   │   │   │   └── long.html
+│   │   │   ├── PassiveTotal_Enrichment_2_0
+│   │   │   │   └── long.html
+│   │   │   ├── PassiveTotal_Host_Pairs_2_0
+│   │   │   │   └── long.html
+│   │   │   ├── PassiveTotal_Malware_2_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── PassiveTotal_Osint_2_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── PassiveTotal_Passive_Dns_2_1
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── PassiveTotal_Ssl_Certificate_Details_2_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── PassiveTotal_Ssl_Certificate_History_2_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── PassiveTotal_Trackers_2_0
+│   │   │   │   └── long.html
+│   │   │   ├── PassiveTotal_Unique_Resolutions_2_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── PassiveTotal_Whois_Details_2_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── Patrowl_GetReport_1_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── PayloadSecurity_File_Analysis_1_0
+│   │   │   │   └── long.html
+│   │   │   ├── PayloadSecurity_Url_Analysis_1_0
+│   │   │   │   └── long.html
+│   │   │   ├── PhishingInitiative_Lookup_2_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── PhishingInitiative_Scan_1_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── PhishTank_CheckURL_2_1
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── Proofpoint_Lookup_1_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── Pulsedive_GetIndicator_1_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── QrDecode_1_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── RecordedFuture_2_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── RiskIQ_Articles_1_0
+│   │   │   │   └── long.html
+│   │   │   ├── RiskIQ_Artifacts_1_0
+│   │   │   │   └── long.html
+│   │   │   ├── RiskIQ_Certificates_1_0
+│   │   │   │   └── long.html
+│   │   │   ├── RiskIQ_Components_1_0
+│   │   │   │   └── long.html
+│   │   │   ├── RiskIQ_Cookies_1_0
+│   │   │   │   └── long.html
+│   │   │   ├── RiskIQ_HostpairChildren_1_0
+│   │   │   │   └── long.html
+│   │   │   ├── RiskIQ_HostpairParents_1_0
+│   │   │   │   └── long.html
+│   │   │   ├── RiskIQ_Malware_1_0
+│   │   │   │   └── long.html
+│   │   │   ├── RiskIQ_Projects_1_0
+│   │   │   │   └── long.html
+│   │   │   ├── RiskIQ_Reputation_1_0
+│   │   │   │   └── long.html
+│   │   │   ├── RiskIQ_Resolutions_1_0
+│   │   │   │   └── long.html
+│   │   │   ├── RiskIQ_Services_1_0
+│   │   │   │   └── long.html
+│   │   │   ├── RiskIQ_Subdomains_1_0
+│   │   │   │   └── long.html
+│   │   │   ├── RiskIQ_Summary_1_0
+│   │   │   │   └── long.html
+│   │   │   ├── RiskIQ_Trackers_1_0
+│   │   │   │   └── long.html
+│   │   │   ├── RiskIQ_Whois_1_0
+│   │   │   │   └── long.html
+│   │   │   ├── Robtex_Forward_PDNS_Query_1_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── Robtex_IP_Query_1_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── Robtex_Reverse_PDNS_Query_1_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── SecurityTrails_Passive_DNS_1_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── SecurityTrails_Whois_1_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── SEKOIAIntelligenceCenter_Context_1_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── SEKOIAIntelligenceCenter_Indicators_1_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── SEKOIAIntelligenceCenter_Observables_1_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── SentinelOne_DeepVisibility_DNSQuery_1_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── Shodan_DNSResolve_1_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── Shodan_Host_1_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── Shodan_Host_History_1_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── Shodan_InfoDomain_1_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── Shodan_ReverseDNS_1_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── Shodan_Search_2_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── SinkDB_1_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── SoltraEdge_1_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── SophosIntelix_GetReport_0_3
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── SophosIntelix_Submit_Dynamic_0_1
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── SophosIntelix_Submit_Static_0_1
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── SpamAssassin_1_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── SpamhausDBL_1_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── Splunk_Search_Domain_FQDN_3_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── Splunk_Search_File_Filename_3_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── Splunk_Search_Hash_3_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── Splunk_Search_IP_3_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── Splunk_Search_Mail_Email_3_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── Splunk_Search_Mail_Subject_3_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── Splunk_Search_Other_3_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── Splunk_Search_Registry_3_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── Splunk_Search_URL_URI_Path_3_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── Splunk_Search_User_3_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── Splunk_Search_User_Agent_3_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── StamusNetworks_HostID_1_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── StaxxSearch_1_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── StopForumSpam_1_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── TalosReputation_1_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── TeamCymruMHR_1_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── TestAnalyzer_1_0
+│   │   │   │   └── long.html
+│   │   │   ├── THOR_Thunderstorm_ScanSample_0_3_1
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── Threatcrowd_1_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── ThreatGrid_1_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── ThreatMiner_1_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── ThreatResponse_1_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── TorBlutmagie_1_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── TorProject_1_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── Triage_2_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── Umbrella_Report_1_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── UnshortenLink_1_2
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── URLhaus_2_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── Urlscan_io_Scan_0_1_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── Urlscan_io_Search_0_1_1
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── Valhalla_GetRuleMatches_0_3_1
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── ValidateObservable_1_0
+│   │   │   │   └── long.html
+│   │   │   ├── Verifalia_1_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── Virusshare_2_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── VirusTotal_DownloadSample_3_1
+│   │   │   │   └── long.html
+│   │   │   ├── VirusTotal_GetReport_3_1
+│   │   │   │   └── long.html
+│   │   │   ├── VirusTotal_Rescan_3_1
+│   │   │   │   └── long.html
+│   │   │   ├── VirusTotal_Scan_3_1
+│   │   │   │   └── long.html
+│   │   │   ├── VMRay_4_1
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── Vulners_CVE_1_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── Vulners_IOC_1_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── Watcher_CheckDomain_1_3
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── WOT_Lookup_2_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── Yara_3_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   ├── Yeti_1_0
+│   │   │   │   ├── long.html
+│   │   │   │   └── short.html
+│   │   │   └── Zscaler_1_3
+│   │   │       ├── long.html
+│   │   │       └── short.html
+│   │   └── utils
+│   │       ├── analyzer-runlocal.py
+│   │       ├── compile-manalyze.sh
+│   │       ├── docker
+│   │       │   ├── build-customimage.sh
+│   │       │   ├── build.sh
+│   │       │   └── Dockerfile_template
+│   │       ├── flavors
+│   │       │   ├── analyzer_flavor_template.json
+│   │       │   ├── check_json_schema.py
+│   │       │   ├── flavor_schema.json
+│   │       │   ├── README.md
+│   │       │   ├── requirements.txt
+│   │       │   └── responder_flavor_template.json
+│   │       └── test_doc
+│   │           ├── README.md
+│   │           ├── requirements.txt
+│   │           ├── testdoc.sh
+│   │           └── testdoc-venv.sh
+│   ├── application.conf
+│   ├── config
+│   │   └── application.conf
+│   └── data
+├── cortex-diagnostic-results.txt
+├── cortex-diagnostic.sh
+├── docker-compose.yml
+├── elasticsearch
+│   ├── config
+│   │   └── elasticsearch.yml
+│   └── data
+├── exec.txt
+├── kibana
+│   └── config
+│       └── kibana.yml
+├── logstash
+│   ├── config
+│   │   └── logstash.yml
+│   ├── patterns
+│   └── pipeline
+│       └── logstash.conf
+├── minio
+│   └── data
+├── misp
+│   ├── certs
+│   ├── core-data
+│   ├── db-data
+│   ├── gnupg
+│   └── redis-data
+├── misp-diagnostic.sh
+├── README.md
+├── redis
+│   └── data
+├── shuffle
+│   ├── shuffle-apps
+│   ├── shuffle-database
+│   └── shuffle-files
+├── soc_diagnostic.sh
+├── soc_migration_test.sh
+└── thehive
+    ├── config
+    │   └── application.conf
+    └── data
+
+591 directories, 1796 files
+                                                                                                                                  
+┌──(smail㉿kali)-[~/mini-soc]
+└─$ 
+ 
+
+
+
+
+
+
+┌──(smail㉿kali)-[~/mini-soc]
+└─$ ls              
+cassandra                      cortex-diagnostic.sh  exec.txt  minio               README.md  soc_diagnostic.sh
+cortex                         docker-compose.yml    kibana    misp                redis      soc_migration_test.sh
+cortex-diagnostic-results.txt  elasticsearch         logstash  misp-diagnostic.sh  shuffle    thehive
+                                                                                                                                  
+┌──(smail㉿kali)-[~/mini-soc]
+└─$ 

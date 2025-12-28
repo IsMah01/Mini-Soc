@@ -1,0 +1,469 @@
+version: '3.8'
+
+networks:
+  soc-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: ${NETWORK_SUBNET}
+
+volumes:
+  elasticsearch-data:
+  cassandra-data:
+  minio-data:
+  redis-data:
+  thehive-data:
+  cortex-data:
+  shuffle-apps:
+  shuffle-files:
+  shuffle-database:
+  misp-db-data:
+  misp-redis-data:
+  misp-core-data:
+  misp-core-certs:
+  misp-core-gnupg:
+
+services:
+  # ===========================================
+  # ELASTICSEARCH
+  # ===========================================
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:${ELASTIC_VERSION}
+    container_name: elasticsearch
+    environment:
+      - node.name=elasticsearch
+      - cluster.name=mini-soc-cluster
+      - discovery.type=single-node
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms${ELASTIC_MEMORY} -Xmx${ELASTIC_MEMORY}"
+      - xpack.security.enabled=true
+      - xpack.security.http.ssl.enabled=false
+      - xpack.security.transport.ssl.enabled=false
+      - ELASTIC_PASSWORD=${ELASTIC_PASSWORD}
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+      nofile:
+        soft: 65536
+        hard: 65536
+    volumes:
+      - ./elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml:ro
+      - elasticsearch-data:/usr/share/elasticsearch/data
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    networks:
+      - soc-network
+    healthcheck:
+      test: ["CMD-SHELL", "curl -s -u elastic:${ELASTIC_PASSWORD} http://localhost:9200/_cluster/health | grep -q '\"status\":\"green\\|yellow\"'"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    restart: unless-stopped
+
+  # ===========================================
+  # KIBANA
+  # ===========================================
+  # ===========================================
+  # KIBANA
+  # ===========================================
+  kibana:
+    image: docker.elastic.co/kibana/kibana:${ELASTIC_VERSION}
+    container_name: kibana
+    environment:
+      - SERVERNAME=kibana
+      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+      - ELASTICSEARCH_USERNAME=kibana_system
+      - ELASTICSEARCH_PASSWORD=changeme123
+      - XPACK_SECURITY_ENABLED=true
+      - XPACK_ENCRYPTEDSAVEDOBJECTS_ENCRYPTIONKEY=a7a6311933d3503b89bc2dbc36572c33a6c10925682e591bffcab6911c06786d
+    volumes:
+      - ./kibana/config/kibana.yml:/usr/share/kibana/config/kibana.yml:ro
+    ports:
+      - "5601:5601"
+    networks:
+      - soc-network
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "curl -s http://localhost:5601/api/status | grep -q '\"overall\":{\"level\":\"available\"'"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    restart: unless-stopped
+
+  # ===========================================
+  # LOGSTASH
+  # ===========================================
+  logstash:
+    image: docker.elastic.co/logstash/logstash:${ELASTIC_VERSION}
+    container_name: logstash
+    environment:
+      - "LS_JAVA_OPTS=-Xms1g -Xmx1g"
+      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+      - ELASTICSEARCH_USERNAME=elastic
+      - ELASTICSEARCH_PASSWORD=${ELASTIC_PASSWORD}
+    volumes:
+      - ./logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml:ro
+      - ./logstash/pipeline:/usr/share/logstash/pipeline:ro
+      - ./logstash/patterns:/usr/share/logstash/patterns:ro
+    ports:
+      - "5044:5044"
+      - "9600:9600"
+    networks:
+      - soc-network
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "curl -s http://localhost:9600/_node/stats | grep -q '\"status\":\"green\"'"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    restart: unless-stopped
+
+  # ===========================================
+  # CASSANDRA
+  # ===========================================
+  cassandra:
+    image: cassandra:${CASSANDRA_VERSION}
+    container_name: cassandra
+    environment:
+      - CASSANDRA_CLUSTER_NAME=${CASSANDRA_CLUSTER_NAME}
+      - MAX_HEAP_SIZE=1G
+      - HEAP_NEWSIZE=200M
+    volumes:
+      - cassandra-data:/var/lib/cassandra
+    ports:
+      - "9042:9042"
+    networks:
+      - soc-network
+    healthcheck:
+      test: ["CMD-SHELL", "cqlsh -e 'describe cluster' || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 10
+    restart: unless-stopped
+
+  # ===========================================
+  # REDIS
+  # ===========================================
+  thehive-redis:
+    image: redis:7-alpine
+    container_name: thehive-redis 
+    command: redis-server --requirepass ${REDIS_PASSWORD}
+    volumes:
+      - redis-data:/data
+    ports:
+      - "6379:6379"
+    networks:
+      - soc-network
+    healthcheck:
+      test: ["CMD", "redis-cli", "--raw", "incr", "ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    restart: unless-stopped
+
+  # ===========================================
+  # MINIO
+  # ===========================================
+  minio:
+    image: minio/minio:latest
+    container_name: minio
+    command: server /data --console-address ":9003"
+    environment:
+      - MINIO_ROOT_USER=${MINIO_ROOT_USER}
+      - MINIO_ROOT_PASSWORD=${MINIO_ROOT_PASSWORD}
+      - MINIO_REGION=${MINIO_REGION}
+    volumes:
+      - minio-data:/data
+    ports:
+      - "9002:9000"
+      - "9003:9003"
+    networks:
+      - soc-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    restart: unless-stopped
+
+  # ===========================================
+  # THEHIVE
+  # ===========================================
+  thehive:
+    image: strangebee/thehive:${THEHIVE_VERSION}
+    container_name: thehive
+    environment:
+      - TZ=${TZ}
+      - TH_SECRET=${THEHIVE_SECRET}
+      - ES_USERNAME=thehive_user
+      - ES_PASSWORD=changeme123
+      - MINIO_USER=admin
+      - MINIO_PASSWORD=changeme123
+    volumes:
+      - ./thehive/config/application.conf:/etc/thehive/application.conf:ro
+      - thehive-data:/opt/thehive/data
+    ports:
+      - "9000:9000"
+    networks:
+      - soc-network
+    depends_on:
+      cassandra:
+        condition: service_healthy
+      minio:
+        condition: service_healthy  
+      thehive-redis:
+        condition: service_healthy
+      elasticsearch:
+        condition: service_healthy
+    restart: unless-stopped
+  
+  # ===========================================
+  # CORTEX
+  # ===========================================
+  cortex:
+    image: thehiveproject/cortex:3.1.1-1
+    container_name: cortex
+    environment:
+      - job_directory=/var/lib/cortex-jobs
+    volumes:
+      - ./cortex/config/application.conf:/etc/cortex/application.conf:ro
+      - cortex-data:/var/lib/cortex
+      - ./cortex/analyzers:/opt/cortex/analyzers:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /var/lib/cortex-jobs:/var/lib/cortex-jobs
+    ports:
+      - "9001:9001"
+    networks:
+      - soc-network
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+    privileged: true
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--tries=1", "--spider", "http://localhost:9001/api/status"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    restart: unless-stopped
+
+  # ===========================================
+  # SHUFFLE
+  # ===========================================
+  shuffle-opensearch:
+    image: opensearchproject/opensearch:2.11.0
+    container_name: shuffle-opensearch
+    hostname: shuffle-opensearch
+    environment:
+      - bootstrap.memory_lock=true
+      - "OPENSEARCH_JAVA_OPTS=-Xms512m -Xmx512m"
+      - cluster.name=shuffle-cluster
+      - node.name=shuffle-opensearch
+      - discovery.type=single-node
+      - plugins.security.disabled=true
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+      nofile:
+        soft: 65536
+        hard: 65536
+    volumes:
+      - shuffle-database:/usr/share/opensearch/data
+    networks:
+      - soc-network
+    restart: unless-stopped
+
+  shuffle-frontend:
+    image: ghcr.io/shuffle/shuffle-frontend:${SHUFFLE_VERSION}
+    container_name: shuffle-frontend
+    hostname: shuffle-frontend
+    environment:
+      - BACKEND_HOSTNAME=shuffle-backend
+    ports:
+      - "3001:80"
+      - "3443:443"
+    networks:
+      - soc-network
+    depends_on:
+      - shuffle-backend
+    restart: unless-stopped
+
+  shuffle-backend:
+    image: ghcr.io/shuffle/shuffle-backend:${SHUFFLE_VERSION}
+    container_name: shuffle-backend
+    hostname: shuffle-backend
+    environment:
+      - SHUFFLE_APP_HOTLOAD_FOLDER=/shuffle-apps
+      - SHUFFLE_FILE_LOCATION=/shuffle-files
+      - OPENSEARCH_URL=http://shuffle-opensearch:9200
+      - SHUFFLE_OPENSEARCH_URL=http://shuffle-opensearch:9200
+      - SHUFFLE_OPENSEARCH_USERNAME=admin
+      - SHUFFLE_OPENSEARCH_PASSWORD=${SHUFFLE_OPENSEARCH_PASSWORD}
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - shuffle-apps:/shuffle-apps
+      - shuffle-files:/shuffle-files
+    networks:
+      - soc-network
+    depends_on:
+      - shuffle-opensearch
+    restart: unless-stopped
+
+  shuffle-orborus:
+    image: ghcr.io/shuffle/shuffle-orborus:${SHUFFLE_VERSION}
+    container_name: shuffle-orborus
+    hostname: shuffle-orborus
+    environment:
+      - SHUFFLE_APP_SDK_VERSION=1.2.0
+      - SHUFFLE_WORKER_VERSION=${SHUFFLE_VERSION}
+      - ORG_ID=Shuffle
+      - ENVIRONMENT_NAME=Shuffle
+      - BASE_URL=http://shuffle-backend:5001
+      - DOCKER_API_VERSION=1.45 
+      - SHUFFLE_BASE_IMAGE_NAME=frikky
+      - SHUFFLE_BASE_IMAGE_REGISTRY=ghcr.io
+      - SHUFFLE_BASE_IMAGE_TAG_SUFFIX="-1.2.0"
+      - CLEANUP=true
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - soc-network
+    depends_on:
+      - shuffle-backend
+    restart: unless-stopped
+
+#==========================================
+  # MISP - Threat Intelligence Platform
+  # ===========================================
+    
+  misp-db:
+    image: mariadb:10.11
+    container_name: misp-db
+    environment:
+      - MYSQL_DATABASE=misp
+      - MYSQL_USER=misp
+      - MYSQL_PASSWORD=misp123
+      - MYSQL_ROOT_PASSWORD=root123
+    volumes:
+      - misp-db-data:/var/lib/mysql
+    networks:
+      - soc-network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-proot123"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    restart: unless-stopped
+
+  misp-redis:
+    image: redis:7-alpine
+    container_name: misp-redis
+    hostname: redis 
+    command: redis-server --requirepass redispassword
+    volumes:
+      - misp-redis-data:/data
+    networks:
+      - soc-network
+    healthcheck:
+      test: ["CMD", "redis-cli", "-a", "redispassword", "ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    restart: unless-stopped
+
+  misp-modules:
+    image: ghcr.io/misp/misp-docker/misp-modules:latest
+    container_name: misp-modules
+    environment:
+      - REDIS_BACKEND=misp-redis
+    networks:
+      - soc-network
+    depends_on:
+      misp-redis:
+        condition: service_healthy
+    restart: unless-stopped
+
+  misp-core:
+    image: ghcr.io/misp/misp-docker/misp-core:latest
+    container_name: misp-core
+    environment:
+      - MISP_ADMIN_EMAIL=admin@admin.test
+      - MISP_ADMIN_PASSPHRASE=admin
+      - MISP_BASEURL=https://localhost:8443 
+      - MISP_EXTERNAL_BASEURL=https://localhost:8443  # ← AJOUTEZ CELLE-CI
+      - MISP_RESTCLIENT_BASEURL=https://localhost:8443  # ← ET CELLE-CI
+      - MYSQL_HOST=misp-db
+      - MYSQL_PORT=3306
+      - MYSQL_DATABASE=misp
+      - MYSQL_USER=misp
+      - MYSQL_PASSWORD=misp123
+      - REDIS_FQDN=misp-redis
+      - MISP_MODULES_FQDN=http://misp-modules
+      - TIMEZONE=UTC
+      - PHP_MEMORY_LIMIT=2048M
+      - PHP_MAX_EXECUTION_TIME=600
+      - PHP_UPLOAD_MAX_FILESIZE=50M
+      - PHP_POST_MAX_SIZE=50M
+    volumes:
+      - misp-core-data:/var/www/MISP/app/files
+      - misp-core-certs:/var/www/MISP/app/files/certs
+      - misp-core-gnupg:/var/www/MISP/.gnupg
+    ports:
+      - "8443:443"
+      - "8081:80"
+    networks:
+      - soc-network
+    depends_on:
+      misp-db:
+        condition: service_healthy
+      misp-redis:
+        condition: service_healthy
+      misp-modules:
+        condition: service_started
+    healthcheck:
+      test: ["CMD", "curl", "-k", "-f", "https://localhost/users/login"]
+      interval: 60s
+      timeout: 30s
+      retries: 10
+      start_period: 180s
+    restart: unless-stopped
+
+  misp-init:
+    image: docker:cli
+    container_name: misp-init
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    depends_on:
+      misp-core:
+        condition: service_healthy
+    command: >
+      sh -c '
+        echo "[misp-init] Attente de MISP..." &&
+        sleep 30 &&
+
+        echo "[misp-init] Correction des permissions..." &&
+        docker exec -u root misp-core chown www-data:www-data /var/www/MISP/app/Config/config.php &&
+        docker exec -u root misp-core chmod 600 /var/www/MISP/app/Config/config.php &&
+
+        echo "[misp-init] Correction de Redis..." &&
+        docker exec -u root misp-core sed -i "s|tcp://redis:6379|tcp://misp-redis:6379|g" /etc/php/8.2/fpm/php.ini &&
+
+        echo "[misp-init] Correction des baseurl..." &&
+        docker exec -u root misp-core sed -i "s|'baseurl' => 'https://localhost'|'baseurl' => 'https://localhost:8443'|g" /var/www/MISP/app/Config/config.php &&
+        docker exec -u root misp-core sed -i "s|'external_baseurl' => 'https://localhost'|'external_baseurl' => 'https://localhost:8443'|g" /var/www/MISP/app/Config/config.php &&
+        docker exec -u root misp-core sed -i "s|'rest_client_baseurl' => 'https://localhost'|'rest_client_baseurl' => 'https://localhost:8443'|g" /var/www/MISP/app/Config/config.php &&
+
+        echo "[misp-init] Rechargement PHP-FPM..." &&
+        docker exec -u root misp-core pkill -USR2 php-fpm &&
+
+        echo "[misp-init] MISP initialisé avec succès !"
+      '
+    networks:
+      - soc-network
+    restart: "no"
