@@ -1,0 +1,21 @@
+FROM python:3.9-alpine
+
+WORKDIR /app
+
+# Installer seulement ce dont on a besoin
+RUN pip install --no-cache-dir requests
+
+# Créer l'utilisateur non-root d'abord
+RUN adduser -D -u 1000 syncuser
+
+# Créer le dossier pour les données persistantes AVEC bon propriétaire
+RUN mkdir -p /data && chown syncuser:syncuser /data
+
+# Copier le script
+COPY sync.py .
+
+# Passer à l'utilisateur non-root
+USER syncuser
+
+# Point d'entrée avec output non-bufféré
+ENTRYPOINT ["python", "-u", "sync.py"]

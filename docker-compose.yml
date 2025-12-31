@@ -22,6 +22,7 @@ volumes:
   misp-core-data:
   misp-core-certs:
   misp-core-gnupg:
+  elastic-thehive-sync-data:
 
 services:
   # ===========================================
@@ -467,3 +468,42 @@ services:
     networks:
       - soc-network
     restart: "no"
+
+  # ===========================================
+  # ELASTIC-THEHIVE SYNCHRONIZATION SERVICE
+  # ===========================================
+  elastic-thehive-sync:
+    build:
+      context: .
+      dockerfile: Dockerfile.sync
+    container_name: elastic-thehive-sync
+    hostname: elastic-thehive-sync
+    environment:
+      - ELASTIC_HOST=http://elasticsearch:9200
+      - ELASTIC_USER=elastic
+      - ELASTIC_PASSWORD=changeme123
+      - THEHIVE_URL=http://thehive:9000/api/alert
+      - THEHIVE_API_KEY=iWtYr7XOrugw5HqUKg4HvXizcL7CV+qD
+    volumes:
+      - elastic-thehive-sync-data:/data
+    networks:
+      - soc-network
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+      thehive:
+        condition: service_started
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import requests; r=requests.get('http://elasticsearch:9200', auth=('elastic','changeme123'), timeout=5); print(r.status_code)"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    stdin_open: false
+    tty: false

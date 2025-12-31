@@ -59,3 +59,16 @@ Username : admin@shuffle.local  Password : ShuffleAdmin123! (ou autre)
 
 
 apikey=iWtYr7XOrugw5HqUKg4HvXizcL7CV+qD
+
+
+
+
+# Remove read-only blocks from Kibana indices specifically
+curl -XPUT -u kibana_system:changeme123 http://localhost:9200/.kibana*/_settings -H 'Content-Type: application/json' -d '{
+  "index.blocks.read_only_allow_delete": null
+}'
+
+# Also remove from event log indices
+curl -XPUT -u kibana_system:changeme123 http://localhost:9200/.kibana-event-log*/_settings -H 'Content-Type: application/json' -d '{
+  "index.blocks.read_only_allow_delete": null
+}'
