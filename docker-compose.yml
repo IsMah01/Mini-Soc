@@ -396,15 +396,24 @@ services:
     environment:
       - MISP_ADMIN_EMAIL=admin@admin.test
       - MISP_ADMIN_PASSPHRASE=admin
-      - MISP_BASEURL=https://localhost:8443 
-      - MISP_EXTERNAL_BASEURL=https://localhost:8443  # ← AJOUTEZ CELLE-CI
-      - MISP_RESTCLIENT_BASEURL=https://localhost:8443  # ← ET CELLE-CI
+      - MISP_BASEURL=https://localhost:8443
+      - MISP_EXTERNAL_BASEURL=https://localhost:8443
+      - MISP_RESTCLIENT_BASEURL=https://localhost:8443
       - MYSQL_HOST=misp-db
       - MYSQL_PORT=3306
       - MYSQL_DATABASE=misp
       - MYSQL_USER=misp
       - MYSQL_PASSWORD=misp123
+      # CRITICAL: Change from 'redis' to 'misp-redis'
       - REDIS_FQDN=misp-redis
+      - REDIS_PORT=6379
+      - REDIS_PASSWORD=redispassword
+      # These ensure Redis settings propagate to all config sections
+      - MISP_REDIS_HOST=misp-redis
+      - MISP_REDIS_PORT=6379
+      - MISP_REDIS_PASSWORD=redispassword
+      - PLUGIN_ZEROMQ_REDIS_HOST=misp-redis
+      - SIMPLEBACKGROUNDJOBS_REDIS_HOST=misp-redis
       - MISP_MODULES_FQDN=http://misp-modules
       - TIMEZONE=UTC
       - PHP_MEMORY_LIMIT=2048M
@@ -415,6 +424,8 @@ services:
       - misp-core-data:/var/www/MISP/app/files
       - misp-core-certs:/var/www/MISP/app/files/certs
       - misp-core-gnupg:/var/www/MISP/.gnupg
+      # Re-enable config mount AFTER we have a working config
+      - ./misp/config:/var/www/MISP/app/Config:ro
     ports:
       - "8443:443"
       - "8081:80"
@@ -436,37 +447,31 @@ services:
     restart: unless-stopped
 
   misp-init:
-    image: docker:cli
+    image: alpine:latest
     container_name: misp-init
     volumes:
+      - ./misp/init.sh:/init.sh:ro
       - /var/run/docker.sock:/var/run/docker.sock
-    depends_on:
-      misp-core:
-        condition: service_healthy
     command: >
       sh -c '
-        echo "[misp-init] Attente de MISP..." &&
-        sleep 30 &&
-
-        echo "[misp-init] Correction des permissions..." &&
-        docker exec -u root misp-core chown www-data:www-data /var/www/MISP/app/Config/config.php &&
-        docker exec -u root misp-core chmod 600 /var/www/MISP/app/Config/config.php &&
-
-        echo "[misp-init] Correction de Redis..." &&
-        docker exec -u root misp-core sed -i "s|tcp://redis:6379|tcp://misp-redis:6379|g" /etc/php/8.2/fpm/php.ini &&
-
-        echo "[misp-init] Correction des baseurl..." &&
-        docker exec -u root misp-core sed -i "s|'baseurl' => 'https://localhost'|'baseurl' => 'https://localhost:8443'|g" /var/www/MISP/app/Config/config.php &&
-        docker exec -u root misp-core sed -i "s|'external_baseurl' => 'https://localhost'|'external_baseurl' => 'https://localhost:8443'|g" /var/www/MISP/app/Config/config.php &&
-        docker exec -u root misp-core sed -i "s|'rest_client_baseurl' => 'https://localhost'|'rest_client_baseurl' => 'https://localhost:8443'|g" /var/www/MISP/app/Config/config.php &&
-
-        echo "[misp-init] Rechargement PHP-FPM..." &&
-        docker exec -u root misp-core pkill -USR2 php-fpm &&
-
-        echo "[misp-init] MISP initialisé avec succès !"
+        echo "Waiting for MISP core to be ready..." &&
+        # Wait for MISP
+        until docker exec misp-core curl -k -s https://localhost/users/login > /dev/null 2>&1; do
+          sleep 5
+        done &&
+        
+        echo "Running initialization script..." &&
+        docker exec misp-core sh /init.sh &&
+        
+        echo "Restarting PHP-FPM..." &&
+        docker exec misp-core pkill -USR2 php-fpm &&
+        
+        echo "MISP initialization complete!"
       '
     networks:
       - soc-network
+    depends_on:
+      - misp-core
     restart: "no"
 
   # ===========================================
