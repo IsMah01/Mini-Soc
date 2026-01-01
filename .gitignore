@@ -1,0 +1,3 @@
+thehive/config/application.conf.backup
+thehive/config/misp-config*.json
+thehive/config/test-connection.sh
