@@ -56,6 +56,9 @@ Log Sources / Simulated Attacks
 (All services are deployed using Docker Compose)
 ```
 
+<img width="2688" height="1600" alt="archi" src="https://github.com/user-attachments/assets/61c061ec-5fc7-4478-b7d8-1be7634ff2c0" />
+
+
 ### 2.2 SOC Workflow
 
 1. **Log generation / collection** (simulated attacks or logs)
@@ -205,7 +208,7 @@ Create:
 ## 9. Deployment
 
 ```bash
-git clone https://github.com/your-org/mini-soc.git
+git clone https://github.com/IsMah01/.....
 cd mini-soc
 
 docker compose up -d
