@@ -1,149 +1,162 @@
-# 🛡️ Mini-SOC — Open‑Source Security Operations Center (Elastic • TheHive • Cortex • MISP • Shuffle)
+# 🛡️ Mini-SOC — Open‑Source Security Operations Center
 
-Ce dépôt contient un **Mini‑SOC complet, pédagogique et opérationnel**, conçu pour être **facile à comprendre, facile à déployer et facile à étendre**.
+Mini‑SOC is a **fully functional, educational and reproducible SOC laboratory**, designed to demonstrate **how a modern Security Operations Center actually works**, end‑to‑end, using **only open‑source technologies**.
 
-L’objectif est de montrer **comment fonctionne réellement un SOC moderne**, depuis la collecte des logs jusqu’à l’investigation et l’enrichissement des incidents, en s’appuyant **uniquement sur des technologies open‑source**.
+This repository is meant to be:
 
----
-
-## 📌 Objectifs du projet
-
-* Construire un **SOC fonctionnel de bout en bout**
-* Comprendre le rôle **précis** de chaque brique SOC
-* Simuler des **attaques réalistes** (SSH brute force, C2, PowerShell, exfiltration…)
-* Détecter via **Elastic Security**
-* Centraliser et investiguer dans **TheHive**
-* Enrichir avec **Cortex** et **MISP**
-* Préparer l’automatisation **SOAR avec Shuffle**
-
-Ce projet est destiné à :
-
-* étudiants en cybersécurité
-* projets PFA / PFE
-* formations SOC / Blue Team
-* démonstrations techniques
+* easy to understand for beginners,
+* detailed enough for cybersecurity students and SOC analysts,
+* clean and professional for GitHub, reports, and technical evaluations.
 
 ---
 
-## 🧱 Architecture générale du Mini‑SOC
+## 1. Project Goals
 
-### 🔄 Vue logique globale
+The main goals of this project are:
+
+* Build a **real SOC pipeline**: from logs to incidents
+* Understand the **role of each SOC technology**
+* Simulate **realistic cyber‑attack scenarios**
+* Detect threats using **Elastic Security (SIEM)**
+* Manage alerts and incidents using **TheHive**
+* Enrich investigations with **Cortex** and **MISP**
+* Prepare the ground for **SOAR automation (Shuffle)**
+
+This project is suitable for:
+
+* SOC / Blue Team learning
+* PFA / PFE projects
+* cybersecurity labs and demos
+* hands‑on SOC training
+
+---
+
+## 2. Global Architecture
+
+### 2.1 Logical SOC Architecture
 
 ```
-Sources de logs
-   │
-   ▼
-Logstash ──► Elasticsearch ──► Kibana (Elastic Security)
-                            │
-                            ▼
-                     Service de synchronisation
-                            │
-                            ▼
-                         TheHive
-                       ▲           ▲
-                       │           │
-                    Cortex        MISP
+Log Sources / Simulated Attacks
+        │
+        ▼
+    Logstash
+        │
+        ▼
+ Elasticsearch  ───►  Kibana (Elastic Security)
+        │
+        ▼
+  Sync Service (Elastic → TheHive)
+        │
+        ▼
+      TheHive
+     ▲        ▲
+     │        │
+  Cortex     MISP
 
-           (ensemble orchestré via Docker Compose)
+(All services are deployed using Docker Compose)
 ```
 
-### 🧠 Logique SOC
+### 2.2 SOC Workflow
 
-1. **Collecte** : les événements de sécurité sont générés ou injectés
-2. **Détection** : Elastic Security applique des règles
-3. **Alerte** : création d’alertes dans Elastic
-4. **Orchestration** : synchronisation vers TheHive
-5. **Investigation** : analyste SOC traite l’incident
-6. **Enrichissement** : Cortex & MISP ajoutent du contexte
-7. **Automatisation (optionnelle)** : Shuffle
-
----
-
-## 🧰 Stack technique et importance de chaque brique
-
-| Technologie              | Rôle clé dans le SOC                                           |
-| ------------------------ | -------------------------------------------------------------- |
-| **Elasticsearch (7.17)** | Moteur central : indexation, recherche, corrélation, détection |
-| **Kibana**               | Interface SOC : visualisation, règles, alertes                 |
-| **Logstash**             | Ingestion et normalisation des logs                            |
-| **Elastic Security**     | Moteur SIEM (règles, corrélations)                             |
-| **TheHive 5**            | Gestion des alertes et des incidents                           |
-| **Cortex**               | Analyse automatique des IOC (IP, hash, URL…)                   |
-| **MISP**                 | Threat Intelligence et corrélation globale                     |
-| **Shuffle**              | SOAR : automatisation des réponses                             |
-| **Cassandra**            | Base de données TheHive                                        |
-| **MinIO**                | Stockage d’artefacts (preuves, fichiers)                       |
-| **Redis**                | Cache et files internes                                        |
+1. **Log generation / collection** (simulated attacks or logs)
+2. **Ingestion & normalization** (Logstash)
+3. **Detection & correlation** (Elastic Security rules)
+4. **Alert creation** (Elastic SIEM)
+5. **Alert synchronization** (custom sync service)
+6. **Incident management** (TheHive)
+7. **Enrichment & intelligence** (Cortex, MISP)
+8. **Automation (optional)** (Shuffle)
 
 ---
 
-## 📁 Structure du projet
+## 3. Technology Stack and Their Importance
+
+| Technology               | Why it is used                                             |
+| ------------------------ | ---------------------------------------------------------- |
+| **Elasticsearch (7.17)** | Core SIEM engine: indexing, search, correlation, detection |
+| **Kibana**               | SOC interface: dashboards, detections, alerts              |
+| **Elastic Security**     | SIEM detection rules and alerting                          |
+| **Logstash**             | Log ingestion and normalization                            |
+| **TheHive 5**            | Incident & case management platform                        |
+| **Cortex**               | Automated IOC analysis (IP, hash, domain, URL)             |
+| **MISP**                 | Threat Intelligence sharing and correlation                |
+| **Shuffle**              | SOAR automation platform                                   |
+| **Cassandra**            | Database backend for TheHive                               |
+| **MinIO**                | Object storage (attachments, artifacts)                    |
+| **Redis**                | Cache and internal queues                                  |
+
+---
+
+## 4. Repository Structure
 
 ```
 mini-soc/
-├── docker-compose.yml          # Orchestration complète du SOC
-├── .env                        # Variables d’environnement (⚠️ secrets)
-├── Dockerfile.sync             # Image du service Elastic → TheHive
+├── docker-compose.yml          # Full SOC orchestration
+├── .env                        # Environment variables (secrets)
+├── Dockerfile.sync             # Sync service image
 │
-├── elasticsearch/              # Configuration Elasticsearch
-├── kibana/                     # Configuration Kibana
-├── logstash/                   # Pipelines Logstash
+├── elasticsearch/              # Elasticsearch configuration
+├── kibana/                     # Kibana configuration
+├── logstash/                   # Logstash pipelines
 │
-├── thehive/                    # Configuration TheHive
-├── cortex/                     # Configuration Cortex
-├── misp/                       # Configuration MISP
-├── shuffle/                    # Configuration Shuffle
+├── thehive/                    # TheHive configuration
+├── cortex/                     # Cortex configuration
+├── misp/                       # MISP configuration
+├── shuffle/                    # Shuffle configuration
 │
-├── cassandra/                  # Données Cassandra
+├── cassandra/                  # Cassandra data
 ├── redis/                      # Redis
-├── minio/                      # MinIO
+├── minio/                      # MinIO storage
 │
-├── sync.py                     # 🔁 Synchronisation Elastic → TheHive
-├── mini_soc_alert_generator.py # 🎯 Génération d’attaques simulées
-├── create_elastic_alerts.py    # Alerte simple de test
-├── create_visible_alert.sh     # Script bash de test
+├── sync.py                     # Elastic → TheHive synchronization
+├── mini_soc_alert_generator.py # Attack & log generator
+├── create_elastic_alerts.py    # Simple Elastic alert test
+├── create_visible_alert.sh     # Bash alert injection
 │
-├── architecture.txt            # Schéma ASCII
-├── configure-cortex.md         # Guide configuration Cortex
-└── exec.txt                    # Commandes utiles & dépannage
+├── architecture.txt            # ASCII architecture diagram
+├── configure-cortex.md         # Cortex setup guide
+└── exec.txt                    # Useful commands & fixes
 ```
 
 ---
 
-## ⚙️ Pré‑requis
+## 5. Requirements
 
-* Linux (testé sur Kali Linux)
+* Linux (tested on Kali Linux)
 * Docker ≥ 24
 * Docker Compose v2
-* RAM : **8 Go minimum (16 Go recommandé)**
+* Minimum 8 GB RAM (16 GB recommended)
 
 ---
 
-## 🔐 Sécurité & bonnes pratiques (IMPORTANT)
+## 6. Security Notice (Very Important)
 
-⚠️ **Ce projet est un laboratoire**. Par défaut, des mots de passe simples sont utilisés.
+⚠️ This project is a **laboratory environment**.
 
-👉 **En production ou pour une soutenance sérieuse** :
+Default passwords and API keys **must NOT** be used in production.
 
-* changer tous les mots de passe
-* générer des **API keys dédiées**
-* utiliser des **rôles et utilisateurs séparés**
+You **must**:
+
+* change all default passwords
+* generate **dedicated API keys**
+* use **separate users and roles** for each service
+* update API keys **directly inside the code** (`sync.py`, scripts)
 
 ---
 
-## 🔑 Gestion des utilisateurs & rôles
+## 7. Users, Roles and API Keys
 
-### Elasticsearch / Kibana
+### 7.1 Elasticsearch / Kibana
 
-Créer des utilisateurs dédiés :
+Recommended users:
 
-* `elastic` : admin
-* `kibana_system` : service Kibana
-* `thehive_user` : accès API vers Elastic
+* `elastic` → administrator
+* `kibana_system` → Kibana service user
+* `thehive_user` → API access for TheHive
 
-Exemple :
+Example:
 
-```bash
+```json
 POST /_security/user/thehive_user
 {
   "password": "CHANGE_ME",
@@ -151,29 +164,29 @@ POST /_security/user/thehive_user
 }
 ```
 
-### TheHive
+### 7.2 TheHive
 
-Créer :
+Create:
 
-* un **admin**
-* un ou plusieurs **analystes SOC**
-* générer une **API key par service**
+* an **admin user**
+* SOC **analyst users**
+* a **dedicated API key** for the sync service
 
-👉 L’API key **doit être changée dans le code** (`sync.py`).
+⚠️ TheHive API key **must be updated in `sync.py`**.
 
-### Cortex
+### 7.3 Cortex
 
-* Générer une **API key Cortex**
-* L’ajouter dans TheHive (Admin → Cortex)
+* Generate a Cortex API key
+* Register Cortex inside TheHive (Admin → Cortex servers)
 
-### MISP
+### 7.4 MISP
 
-* Changer l’admin password
-* Générer une **API key MISP** si intégration avancée
+* Change default admin password
+* Generate API keys if advanced integration is needed
 
 ---
 
-## 🌐 Ports utilisés
+## 8. Network Ports
 
 | Service       | Port         |
 | ------------- | ------------ |
@@ -189,7 +202,7 @@ Créer :
 
 ---
 
-## 🚀 Déploiement
+## 9. Deployment
 
 ```bash
 git clone https://github.com/your-org/mini-soc.git
@@ -198,15 +211,15 @@ cd mini-soc
 docker compose up -d
 ```
 
-⏳ Premier démarrage : 3 à 5 minutes.
+Initial startup may take several minutes (Elastic + Cassandra).
 
 ---
 
-## 🧪 Génération de scénarios d’attaque
+## 10. Attack & Alert Simulation
 
-Le script `mini_soc_alert_generator.py` permet de **simuler des attaques réalistes**.
+The script `mini_soc_alert_generator.py` injects **realistic ECS‑like logs** to trigger detections.
 
-Exemples :
+Examples:
 
 ```bash
 python3 mini_soc_alert_generator.py --scenario ssh_bruteforce
@@ -215,46 +228,45 @@ python3 mini_soc_alert_generator.py --scenario win_powershell
 python3 mini_soc_alert_generator.py --scenario all
 ```
 
-👉 Les alertes apparaissent dans :
+Alerts will appear in:
 **Kibana → Security → Alerts**
 
 ---
 
-## 🔁 Synchronisation Elastic → TheHive
+## 11. Elastic → TheHive Synchronization
 
-Le service `sync.py` :
+The `sync.py` service:
 
-* récupère les alertes Elastic
-* évite les doublons
-* crée automatiquement des alertes TheHive
+* fetches Elastic SIEM alerts
+* prevents duplicates
+* creates alerts in TheHive automatically
 
-⚠️ **Changer l’API key TheHive dans le code avant usage public**.
-
----
-
-## 🧠 Enrichissement (Cortex & MISP)
-
-* Cortex analyse automatiquement IP, hash, URL
-* MISP apporte du contexte Threat Intelligence
-
-Voir : `configure-cortex.md`
+⚠️ Always change API keys before sharing the project publicly.
 
 ---
 
-## 🤖 Automatisation (Shuffle)
+## 12. Enrichment with Cortex and MISP
 
-Shuffle est prêt pour :
+* Cortex performs automatic analysis on observables
+* MISP provides global threat intelligence context
 
-* création automatique de cases
+See: `configure-cortex.md`
+
+---
+
+## 13. SOAR Automation (Shuffle)
+
+Shuffle is included to demonstrate:
+
+* automated case creation
 * notifications
-* blocage IP
-* enrichissement automatique
+* response actions
 
 ---
 
-## 🧯 Dépannage courant
+## 14. Common Issues
 
-### Indices en read‑only (flood stage)
+### Elasticsearch flood‑stage (read‑only indices)
 
 ```bash
 curl -u elastic:changeme123 -X PUT localhost:9200/_all/_settings \
@@ -264,13 +276,13 @@ curl -u elastic:changeme123 -X PUT localhost:9200/_all/_settings \
 
 ---
 
-## 🎓 Auteur
+## 15. Author
 
 **Ismail Mahmoudi**
 Cybersecurity Student — ENSIAS
 
 ---
 
-## 📄 Licence
+## 16. License
 
-Projet éducatif open‑source. Libre à adapter, améliorer et étendre.
+Educational open‑source project. Free to use, modify and extend.
